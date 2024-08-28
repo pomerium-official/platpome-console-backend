@@ -1,0 +1,8277 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"EventParamsType": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"eventName": {
+						"type": "string"
+					},
+					"profile": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"txId": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"eventName"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ErrorVo": {
+				"properties": {
+					"code": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"messageCode": {
+						"type": "string"
+					},
+					"events": {
+						"items": {
+							"$ref": "#/components/schemas/EventParamsType"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"code",
+					"message",
+					"messageCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonCodeGroupQueryResponse": {
+				"properties": {
+					"codeGroup": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"order": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"codeGroup",
+					"name",
+					"description",
+					"order"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_CommonCodeGroupQueryResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/CommonCodeGroupQueryResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyCodeGroupsQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonCode": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"order": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					},
+					"codeGroup": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"order",
+					"description",
+					"name",
+					"codeGroup",
+					"code"
+				],
+				"type": "object",
+				"description": "Model CommonCode\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_CommonCode-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/CommonCode"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyCodesQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"codeGroup": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AttachFile": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"fileSize": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"fileExt": {
+						"type": "string",
+						"nullable": true
+					},
+					"fileChgName": {
+						"type": "string",
+						"nullable": true
+					},
+					"fileName": {
+						"type": "string"
+					},
+					"fileUrl": {
+						"type": "string"
+					},
+					"path": {
+						"type": "string",
+						"nullable": true
+					},
+					"attachFileId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"fileSize",
+					"fileExt",
+					"fileChgName",
+					"fileName",
+					"fileUrl",
+					"path",
+					"attachFileId"
+				],
+				"type": "object",
+				"description": "Model AttachFile\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_AttachFile_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/AttachFile"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"SendCertificationSMSResponse": {
+				"properties": {
+					"messageId": {
+						"type": "string",
+						"description": "문자 전송 업체에서 반환하는 UUID"
+					},
+					"expiryTime": {
+						"type": "number",
+						"format": "double",
+						"description": "만료시간 epoch time"
+					}
+				},
+				"required": [
+					"messageId",
+					"expiryTime"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_SendCertificationSMSResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/SendCertificationSMSResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"SendCertificationSMSRequest": {
+				"properties": {
+					"consoleMemberName": {
+						"type": "string",
+						"description": "콘솔멤버 이름",
+						"example": "김개발"
+					},
+					"nationCodeNumber": {
+						"type": "string",
+						"description": "국가번호",
+						"example": "82"
+					},
+					"phone": {
+						"type": "string",
+						"description": "핸드폰 번호",
+						"example": "01042128867"
+					}
+				},
+				"required": [
+					"consoleMemberName",
+					"nationCodeNumber",
+					"phone"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CertificateCodeRequest": {
+				"properties": {
+					"code": {
+						"type": "string",
+						"description": "핸드폰 인증 인증번호 6자리",
+						"minLength": 6,
+						"maxLength": 6
+					}
+				},
+				"required": [
+					"code"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PingResponse": {
+				"description": "Ping응답",
+				"properties": {
+					"message": {
+						"type": "string",
+						"description": "메시지"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_any_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"MethodType": {
+				"type": "string",
+				"enum": [
+					"API",
+					"Console"
+				]
+			},
+			"FindManyActivityLogsQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"profile": {
+						"type": "string",
+						"enum": [
+							"DEV",
+							"PRD"
+						],
+						"description": "profile : 'DEV' | 'PRD'"
+					},
+					"from": {
+						"type": "string",
+						"description": "YYYY-MM-DD 형식"
+					},
+					"to": {
+						"type": "string",
+						"description": "YYYY-MM-DD 형식"
+					},
+					"types": {
+						"type": "string",
+						"description": "'wallet' | 'NFT'"
+					},
+					"method": {
+						"$ref": "#/components/schemas/MethodType",
+						"description": "'API' | 'Console'"
+					}
+				},
+				"required": [
+					"profile"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"App": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"siteUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"detailDescription": {
+						"type": "string",
+						"nullable": true
+					},
+					"bannerUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"promotionalText": {
+						"type": "string",
+						"nullable": true
+					},
+					"cardUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"blockChainId": {
+						"type": "string"
+					},
+					"iconUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"siteUrl",
+					"detailDescription",
+					"bannerUrl",
+					"promotionalText",
+					"cardUrl",
+					"blockChainId",
+					"iconUrl",
+					"name",
+					"appId"
+				],
+				"type": "object",
+				"description": "Model App\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_App_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/App"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateAppRequest": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "앱 이름",
+						"example": "appName",
+						"minLength": 1,
+						"maxLength": 50
+					},
+					"iconUrl": {
+						"type": "string",
+						"example": "https://example.com/example/exampleexample",
+						"pattern": "[^(?:/(?:\\*{1,2}|\\w+\\*{0,2}))+/?$]"
+					},
+					"blockChainId": {
+						"type": "string",
+						"description": "체인",
+						"example": "ETH"
+					}
+				},
+				"required": [
+					"name",
+					"iconUrl",
+					"blockChainId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_CreateAppRequest.Exclude_keyofCreateAppRequest.blockChainId__": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "앱 이름",
+						"example": "appName",
+						"minLength": 1,
+						"maxLength": 50
+					},
+					"iconUrl": {
+						"type": "string",
+						"example": "https://example.com/example/exampleexample",
+						"pattern": "[^(?:/(?:\\*{1,2}|\\w+\\*{0,2}))+/?$]"
+					}
+				},
+				"required": [
+					"name",
+					"iconUrl"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_CreateAppRequest.blockChainId_": {
+				"$ref": "#/components/schemas/Pick_CreateAppRequest.Exclude_keyofCreateAppRequest.blockChainId__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"UpdateAppRequest": {
+				"$ref": "#/components/schemas/Omit_CreateAppRequest.blockChainId_"
+			},
+			"Platform": {
+				"type": "string",
+				"enum": [
+					"iOS",
+					"Android",
+					"Steam",
+					"Window",
+					"macOS"
+				]
+			},
+			"PlatformUrl": {
+				"properties": {
+					"platform": {
+						"$ref": "#/components/schemas/Platform"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"platform",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ReleaseStatusCodeType": {
+				"type": "string",
+				"enum": [
+					"IN_REVIEW",
+					"REQUESTED",
+					"REJECTED",
+					"CANCELED",
+					"RELEASED"
+				]
+			},
+			"ReleaseStatusCodeResponseType": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/ReleaseStatusCodeType"
+					},
+					{
+						"type": "string",
+						"enum": [
+							"Preparation"
+						]
+					}
+				]
+			},
+			"AppDetailResponseType": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"iconUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"blockChainId": {
+						"type": "string"
+					},
+					"cardUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"promotionalText": {
+						"type": "string",
+						"nullable": true
+					},
+					"bannerUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"screenUrls": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"detailDescription": {
+						"type": "string",
+						"nullable": true
+					},
+					"siteUrl": {
+						"type": "string",
+						"nullable": true
+					},
+					"platformUrls": {
+						"items": {
+							"$ref": "#/components/schemas/PlatformUrl"
+						},
+						"type": "array"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"status": {
+						"$ref": "#/components/schemas/ReleaseStatusCodeResponseType",
+						"description": "심사상태코드. 코드그룹(APRV_STAT), REQUEST: 심사요청, IN_REVIEW: 심사중, REJECTED: 반려, RELEASED: 출시, CANCELED: 취소됨"
+					}
+				},
+				"required": [
+					"appId",
+					"name",
+					"iconUrl",
+					"blockChainId",
+					"cardUrl",
+					"promotionalText",
+					"bannerUrl",
+					"screenUrls",
+					"detailDescription",
+					"siteUrl",
+					"createdId",
+					"createdAt",
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_AppDetailResponseType_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/AppDetailResponseType"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyAppsQueryResponse": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 id"
+					},
+					"name": {
+						"type": "string",
+						"description": "앱 이름"
+					},
+					"iconUrl": {
+						"type": "string",
+						"nullable": true,
+						"description": "앱 아이콘 url"
+					},
+					"appWorkspace": {
+						"items": {
+							"properties": {
+								"defaultYn": {
+									"type": "string",
+									"description": "디폴트 워크스페이스 여부"
+								},
+								"workspaceId": {
+									"type": "number",
+									"format": "double",
+									"description": "워크스페이스 id"
+								}
+							},
+							"required": [
+								"defaultYn",
+								"workspaceId"
+							],
+							"type": "object"
+						},
+						"type": "array",
+						"description": "앱 하위 워크 스페이스 목록"
+					},
+					"appWallet": {}
+				},
+				"required": [
+					"appId",
+					"name",
+					"iconUrl",
+					"appWorkspace",
+					"appWallet"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_FindManyAppsQueryResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/FindManyAppsQueryResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindMAnyAppsQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"name": {
+						"type": "string",
+						"description": "앱 이름 검색 값 (포함 검색)"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AppApiKey": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"key": {
+						"type": "string"
+					},
+					"expireDt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"apiKeyKindCd": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"apiKeyId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"key",
+					"expireDt",
+					"apiKeyKindCd",
+					"name",
+					"appId",
+					"apiKeyId"
+				],
+				"type": "object",
+				"description": "Model AppApiKey\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_AppApiKey_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/AppApiKey"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateAppApiKeyRequest": {
+				"properties": {
+					"appId": {
+						"type": "integer",
+						"format": "int32",
+						"description": "앱 식별자",
+						"example": 1
+					},
+					"name": {
+						"type": "string",
+						"description": "앱 API KEY 이름",
+						"minLength": 1,
+						"maxLength": 50
+					},
+					"apiKeyKindCode": {
+						"type": "string",
+						"description": "코드그룹명 : [API_KEY]\r\n키유형코드 =>\r\nSIGN_SECRET: 서명 시크릿\r\nREST_API: REST API 키\r\nOAUTH2_CLIENT: oauth2클라이언트\r\nENC_PUBLIC: 암호화 공개키\r\nENC_PRIVATE: 암호화 비공개키\r\nCLIENT_ID : 클라이언트 ID\r\nCLIENT_SECRET : 클라이언트 시크릿",
+						"example": "REST_API"
+					}
+				},
+				"required": [
+					"appId",
+					"name",
+					"apiKeyKindCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_AppApiKey-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/AppApiKey"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"BigNumber": {
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"hex": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"hex"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AppWalletBalance": {
+				"properties": {
+					"symbol": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"decimals": {
+						"type": "number",
+						"format": "double"
+					},
+					"value": {
+						"$ref": "#/components/schemas/BigNumber"
+					},
+					"displayValue": {
+						"type": "string"
+					},
+					"iconUrl": {
+						"type": "string"
+					},
+					"contractAddress": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"symbol",
+					"name",
+					"decimals",
+					"value",
+					"displayValue",
+					"iconUrl",
+					"contractAddress"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_AppWalletBalance-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/AppWalletBalance"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"SupportChainId": {
+				"enum": [
+					137,
+					80001,
+					56,
+					97
+				],
+				"type": "number"
+			},
+			"BlockChainResponseType": {
+				"properties": {
+					"blockchainId": {
+						"type": "string",
+						"description": "블록체인 ID(심볼)",
+						"example": "BTC"
+					},
+					"name": {
+						"type": "string",
+						"description": "블록 체인 명",
+						"example": "BitCoin"
+					},
+					"symbolImageUrl": {
+						"type": "string",
+						"description": "심볼 이미지 URL"
+					}
+				},
+				"required": [
+					"blockchainId",
+					"name",
+					"symbolImageUrl"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_BlockChainResponseType-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/BlockChainResponseType"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"Board": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"updatorId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"creatorId": {
+						"type": "number",
+						"format": "double"
+					},
+					"boardCd": {
+						"type": "string",
+						"nullable": true
+					},
+					"content": {
+						"type": "string",
+						"nullable": true
+					},
+					"title": {
+						"type": "string",
+						"nullable": true
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatorId",
+					"creatorId",
+					"boardCd",
+					"content",
+					"title",
+					"id"
+				],
+				"type": "object",
+				"description": "Model Board\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_Board-or-null_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Board"
+							}
+						],
+						"nullable": true
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CommonResponse_Board-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/Board"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CommonResponse_Board_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Board"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"Pick_Board.title-or-content-or-creatorId_": {
+				"properties": {
+					"title": {
+						"type": "string",
+						"nullable": true
+					},
+					"content": {
+						"type": "string",
+						"nullable": true
+					},
+					"creatorId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"title",
+					"content",
+					"creatorId"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"BoardCreateParams": {
+				"$ref": "#/components/schemas/Pick_Board.title-or-content-or-creatorId_",
+				"example": {
+					"title": "제목 샘플a",
+					"content": "내용 샘플"
+				},
+				"description": "게시판 글 생성 body\r\nswagger 샘플은 아래와 같이 작성합니다. --- 현재 작동 안함"
+			},
+			"BoardDeleteParams": {
+				"properties": {
+					"boardIds": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"boardIds"
+				],
+				"type": "object",
+				"description": "게시판 글 삭제 body"
+			},
+			"ConsoleMember": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"recoveryEmail": {
+						"type": "string",
+						"nullable": true
+					},
+					"phoneCertificateYn": {
+						"type": "string",
+						"nullable": true
+					},
+					"phone": {
+						"type": "string",
+						"nullable": true
+					},
+					"email": {
+						"type": "string"
+					},
+					"nickname": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"loginId": {
+						"type": "string"
+					},
+					"platformMemberId": {
+						"type": "string"
+					},
+					"memberId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"recoveryEmail",
+					"phoneCertificateYn",
+					"phone",
+					"email",
+					"nickname",
+					"name",
+					"loginId",
+					"platformMemberId",
+					"memberId"
+				],
+				"type": "object",
+				"description": "Model ConsoleMember\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_ConsoleMember_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/ConsoleMember"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateConsoleMemberRequest": {
+				"properties": {
+					"loginId": {
+						"type": "string",
+						"example": "test1234",
+						"minLength": 8
+					},
+					"name": {
+						"type": "string",
+						"description": "이름",
+						"example": "홍길동"
+					},
+					"nickname": {
+						"type": "string",
+						"description": "닉네임",
+						"example": "지트북"
+					},
+					"email": {
+						"type": "string",
+						"description": "이메일 주소",
+						"example": "test@gmail.com"
+					},
+					"phone": {
+						"type": "string",
+						"description": "핸드폰 번호"
+					},
+					"phoneCertificateYn": {
+						"type": "string",
+						"description": "모바일 인증 여부"
+					},
+					"recoveryEmail": {
+						"type": "string",
+						"description": "복구 이메일"
+					}
+				},
+				"required": [
+					"loginId",
+					"name",
+					"nickname",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_CreateConsoleMemberRequest.Exclude_keyofCreateConsoleMemberRequest.loginId-or-platformMemberId__": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "이름",
+						"example": "홍길동"
+					},
+					"nickname": {
+						"type": "string",
+						"description": "닉네임",
+						"example": "지트북"
+					},
+					"email": {
+						"type": "string",
+						"description": "이메일 주소",
+						"example": "test@gmail.com"
+					},
+					"phone": {
+						"type": "string",
+						"description": "핸드폰 번호"
+					},
+					"phoneCertificateYn": {
+						"type": "string",
+						"description": "모바일 인증 여부"
+					},
+					"recoveryEmail": {
+						"type": "string",
+						"description": "복구 이메일"
+					}
+				},
+				"required": [
+					"name",
+					"nickname",
+					"email"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_CreateConsoleMemberRequest.loginId-or-platformMemberId_": {
+				"$ref": "#/components/schemas/Pick_CreateConsoleMemberRequest.Exclude_keyofCreateConsoleMemberRequest.loginId-or-platformMemberId__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"UpdateConsoleMemberRequest": {
+				"$ref": "#/components/schemas/Omit_CreateConsoleMemberRequest.loginId-or-platformMemberId_"
+			},
+			"CommonResponse_ConsoleMember-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/ConsoleMember"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyConsoleMembersQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"nickName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DirectListingResponse": {
+				"properties": {
+					"listingId": {
+						"type": "string",
+						"description": "direct listing id",
+						"example": "3"
+					},
+					"txHash": {
+						"type": "string",
+						"description": "transaction hash",
+						"example": "0x426eb17979ade27411a8209ff65305c14e892268bc66a074017ddd4a9c3f7d7e"
+					},
+					"rowData": {
+						"description": "rawdata from rpc result including receipt, logs, event"
+					}
+				},
+				"required": [
+					"listingId",
+					"txHash",
+					"rowData"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_DirectListingResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/DirectListingResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"DirectListingRequest": {
+				"properties": {
+					"contractAddress": {
+						"type": "string",
+						"description": "NFT Marketplace Contract address",
+						"example": "0xFae161C36B409651C60F22043355935e4Af30116"
+					},
+					"tokenId": {
+						"type": "string",
+						"description": "Required - token ID of the NFT to sell",
+						"example": 8
+					},
+					"pricePerToken": {
+						"type": "string",
+						"description": "Required - price of each token in the listing",
+						"example": "1.0"
+					},
+					"currencyContractAddress": {
+						"type": "string",
+						"description": "Optional - smart contract address of the currency to use for the listing",
+						"example": "0x34e0f7185f99d874fCC12400db9fA79778958224"
+					},
+					"isReservedListing": {
+						"type": "boolean",
+						"description": "Optional - whether or not the listing is reserved (only specific wallet addresses can buy)",
+						"example": false
+					},
+					"quantity": {
+						"type": "string",
+						"description": "Optional - number of tokens to sell (1 for ERC721 NFTs)",
+						"example": 5
+					},
+					"startTimestamp": {
+						"type": "string",
+						"description": "Optional - when the listing should start (default is now)",
+						"example": "2023-08-11 00:00:00"
+					},
+					"endTimestamp": {
+						"type": "string",
+						"description": "Optional - when the listing should end (default is 7 days from now)",
+						"example": "2023-08-18 00:00:00"
+					}
+				},
+				"required": [
+					"tokenId",
+					"pricePerToken"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CancelListingRequest": {
+				"properties": {
+					"tokenId": {
+						"type": "string"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"tokenId",
+					"appId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ChangePriceRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"price": {
+						"type": "string"
+					},
+					"tokenId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"appId",
+					"price",
+					"tokenId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PaginatorQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NFTList": {
+				"properties": {
+					"price": {
+						"type": "string",
+						"description": "금액 (거래통화 기준)",
+						"example": "0.1"
+					},
+					"currency": {
+						"type": "string",
+						"description": "거래 통화 ( MATIC, ETH, ETC )",
+						"example": "MATIC"
+					},
+					"listingId": {
+						"type": "string",
+						"description": "마켓 리스팅 아이디 (구매 시 사용)",
+						"example": 1
+					},
+					"tokenId": {
+						"type": "string",
+						"description": "NFT Token ID",
+						"example": 1
+					},
+					"availableQuantity": {
+						"type": "string",
+						"description": "남은 수량",
+						"example": 1
+					},
+					"nftImageUrl": {
+						"type": "string",
+						"description": "NFT 이미지 주소 화면 표시용 (게이트웨이 URL)",
+						"example": "https://4e84146aac674979bab7cb5193b5a409.ipfscdn.io/ipfs/bafybeid4i2telk234fmm44twdniajsgmojm2ledpu4c6n7e2qmqsmffr5y/do2g.jpg"
+					},
+					"ipfsUrl": {
+						"type": "string",
+						"description": "NFT IPFS 이미지 주소",
+						"example": "ipfs://QmQnkn9WJCf8vz4sKtjv79pmcCqyc931EPw4Fva9uDsMm2/0"
+					},
+					"nftName": {
+						"type": "string",
+						"description": "NFT 명 (상품명)",
+						"example": "10000 Point"
+					},
+					"nftDescription": {
+						"type": "string",
+						"description": "NFT 설명명 (상품설명)",
+						"example": "10000 Point you can get"
+					},
+					"createdAt": {
+						"type": "number",
+						"format": "double",
+						"description": "Listing StartTime Seconds"
+					}
+				},
+				"required": [
+					"price",
+					"currency",
+					"listingId",
+					"tokenId",
+					"availableQuantity",
+					"nftImageUrl",
+					"ipfsUrl",
+					"nftName",
+					"nftDescription",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CurrencyValue": {
+				"properties": {
+					"value": {
+						"type": "string"
+					},
+					"displayValue": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"value",
+					"displayValue"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Trait": {
+				"properties": {
+					"trait_type": {
+						"type": "string"
+					},
+					"value": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"display_type": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"trait_type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TraitWithBoost": {
+				"properties": {
+					"trait_type": {
+						"type": "string"
+					},
+					"value": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"display_type": {
+						"type": "string",
+						"enum": [
+							"boost_number",
+							"boost_percentage"
+						]
+					}
+				},
+				"required": [
+					"trait_type",
+					"value",
+					"display_type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TraitWithLevel": {
+				"properties": {
+					"trait_type": {
+						"type": "string"
+					},
+					"value": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						]
+					},
+					"display_type": {
+						"type": "string",
+						"enum": [
+							"number"
+						],
+						"nullable": false
+					}
+				},
+				"required": [
+					"trait_type",
+					"value",
+					"display_type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Metadata": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of NFT.",
+						"example": "Tier 1 Pomerium"
+					},
+					"description": {
+						"type": "string",
+						"description": "Optional description for the NFT.",
+						"example": "A majestic creature from the enchanted forest."
+					},
+					"image": {
+						"type": "string",
+						"description": "ipfs url",
+						"example": "ipfs://QmXyzAbCdEf12345/0"
+					},
+					"attributes": {
+						"items": {
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/Trait"
+								},
+								{
+									"$ref": "#/components/schemas/TraitWithBoost"
+								},
+								{
+									"$ref": "#/components/schemas/TraitWithLevel"
+								}
+							]
+						},
+						"type": "array",
+						"description": "Additional attributes for the NFT, including traits, boosts, or levels."
+					},
+					"properties": {
+						"items": {
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/Trait"
+								},
+								{
+									"$ref": "#/components/schemas/TraitWithBoost"
+								},
+								{
+									"$ref": "#/components/schemas/TraitWithLevel"
+								}
+							]
+						},
+						"type": "array",
+						"description": "Additional properties for the NFT, including traits, boosts, or levels."
+					},
+					"external_url": {
+						"type": "string",
+						"description": "External URL for more information about the NFT.",
+						"example": "https://example.com/nft-details"
+					},
+					"background_color": {
+						"type": "string",
+						"description": "Background color for the NFT display.",
+						"example": "#ffcc00"
+					},
+					"id": {
+						"type": "string",
+						"description": "tokenID - The unique identifier of the NFT.",
+						"example": "123456"
+					},
+					"uri": {
+						"type": "string",
+						"description": "The URI of the NFT.",
+						"example": "ipfs://QmXyzAbCdEf12345"
+					},
+					"customImage": {
+						"type": "string",
+						"description": "Custom image URL for the NFT.",
+						"example": "https://example.com/custom-nft-image.jpg"
+					},
+					"customAnimationUrl": {
+						"type": "string",
+						"description": "Custom animation URL for the NFT.",
+						"example": "https://example.com/custom-nft-animation.gif"
+					}
+				},
+				"required": [
+					"name",
+					"image"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Status": {
+				"enum": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5
+				],
+				"type": "number"
+			},
+			"ListingNFT": {
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "The id of the listing.",
+						"example": 1
+					},
+					"creatorAddress": {
+						"type": "string",
+						"description": "The address of the creator of listing.",
+						"example": "0xBcb0a748ea81B17274De6714ea60BD56E76E11cb"
+					},
+					"assetContractAddress": {
+						"type": "string",
+						"description": "The address of the asset being listed."
+					},
+					"tokenId": {
+						"type": "string",
+						"description": "The ID of the token to list.",
+						"example": "1"
+					},
+					"quantity": {
+						"type": "string",
+						"description": "The quantity of tokens to include in the listing (always 1 for ERC721)."
+					},
+					"currencyContractAddress": {
+						"type": "string",
+						"description": "The address of the currency to accept for the listing.",
+						"example": "0x4c1A52719d507827F8A3353bD0Aaf85BCc5Ce9a9"
+					},
+					"currencyValuePerToken": {
+						"$ref": "#/components/schemas/CurrencyValue",
+						"description": "The `CurrencyValue` of the listing. Useful for displaying the price information."
+					},
+					"pricePerToken": {
+						"type": "string",
+						"description": "The price to pay per unit of NFTs listed. ( MATIC for this project )",
+						"example": "0.1"
+					},
+					"asset": {
+						"$ref": "#/components/schemas/Metadata",
+						"description": "The asset being listed."
+					},
+					"startTimeInSeconds": {
+						"type": "number",
+						"format": "double",
+						"description": "The start time of the listing."
+					},
+					"endTimeInSeconds": {
+						"type": "number",
+						"format": "double",
+						"description": "The end time of the listing."
+					},
+					"isReservedListing": {
+						"type": "boolean",
+						"description": "Whether the listing is reserved to be bought from a specific set of buyers.",
+						"example": false
+					},
+					"status": {
+						"$ref": "#/components/schemas/Status",
+						"description": "Whether the listing is CREATED, COMPLETED, or CANCELLED.\r\nUNSET = 0, Created = 1, Completed = 2, Cancelled = 3, Active = 4, Expired = 5",
+						"example": 4
+					}
+				},
+				"required": [
+					"id",
+					"creatorAddress",
+					"assetContractAddress",
+					"tokenId",
+					"quantity",
+					"currencyContractAddress",
+					"currencyValuePerToken",
+					"pricePerToken",
+					"asset",
+					"startTimeInSeconds",
+					"endTimeInSeconds",
+					"isReservedListing",
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ListingResponse": {
+				"properties": {
+					"list": {
+						"items": {
+							"$ref": "#/components/schemas/NFTList"
+						},
+						"type": "array"
+					},
+					"rowData": {
+						"items": {
+							"$ref": "#/components/schemas/ListingNFT"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"list",
+					"rowData"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_ListingResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/ListingResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"GetValidListingsQueryParams": {
+				"properties": {
+					"includeRowData": {
+						"type": "boolean"
+					},
+					"pageSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double"
+					},
+					"sellerAddress": {
+						"type": "string"
+					},
+					"tokenContract": {
+						"type": "string"
+					},
+					"tokenId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"includeRowData"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IpfsResponse": {
+				"properties": {
+					"ipfsUrl": {
+						"type": "string",
+						"description": "IPFS URL",
+						"example": "ipfs://QmcbeKNja2q82GYDSsJyJiPvC7BBbrNi6vL3X6KTUee66M/dog.jpg"
+					},
+					"imageUrl": {
+						"type": "string",
+						"description": "IMAGE URL - GATEWAY URL + 파일명",
+						"example": "https://15065ae3c21e0bff07eaf80b713a6ef0.ipfscdn.io/ipfs/bafybeigt3lrm5frjsocxmrjkmecu55ky3t4bpqe3shbgktk7knxuexgwmi/dog.jpg"
+					}
+				},
+				"required": [
+					"ipfsUrl",
+					"imageUrl"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_IpfsResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/IpfsResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"MetadataWithSupply": {
+				"properties": {
+					"supply": {
+						"type": "string",
+						"description": "The amount to be minted.",
+						"example": 1
+					},
+					"metadata": {
+						"$ref": "#/components/schemas/Metadata"
+					},
+					"imageUrl": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"supply",
+					"metadata"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"MintBatchRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"listing": {
+						"type": "boolean",
+						"description": "마켓플레이스 즉시 등록 여부"
+					},
+					"price": {
+						"type": "string",
+						"description": "마켓플레이스 판매 가격",
+						"example": "10.00"
+					},
+					"contractAddress": {
+						"type": "string",
+						"description": "NFT Contract address",
+						"example": "0x34e0f7185f99d874fCC12400db9fA79778958224"
+					},
+					"metadatas": {
+						"items": {
+							"$ref": "#/components/schemas/MetadataWithSupply"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"listing",
+					"price",
+					"metadatas"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"MintBatchToRequest": {
+				"$ref": "#/components/schemas/MintBatchRequest"
+			},
+			"MintAdditionalSupplyRequest": {
+				"properties": {
+					"contractAddress": {
+						"type": "string",
+						"description": "NFT Contract address",
+						"example": "0x34e0f7185f99d874fCC12400db9fA79778958224"
+					},
+					"tokenId": {
+						"type": "number",
+						"format": "double",
+						"description": "NFT token id",
+						"example": 1
+					},
+					"additionalSupply": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"contractAddress",
+					"tokenId",
+					"additionalSupply"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NftItemDataType": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"imgSrc": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"nftName": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"sales": {
+						"type": "boolean"
+					},
+					"price": {
+						"type": "string"
+					},
+					"symbol": {
+						"type": "string"
+					},
+					"total": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"rest": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"type": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"sales",
+					"price",
+					"symbol",
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_NftItemDataType-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/NftItemDataType"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"NftItemDetailDataType": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"imgSrc": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"nftName": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"sales": {
+						"type": "boolean"
+					},
+					"price": {
+						"type": "string"
+					},
+					"symbol": {
+						"type": "string"
+					},
+					"total": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"rest": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					},
+					"type": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"contractAddress": {
+						"type": "string"
+					},
+					"properties": {
+						"items": {
+							"properties": {
+								"value": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"value",
+								"type"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"createdAt": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"sales",
+					"price",
+					"symbol",
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_NftItemDetailDataType_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/NftItemDetailDataType"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"GetNFTQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "The desired page size of the result.",
+						"example": 10
+					},
+					"pageCursor": {
+						"type": "string",
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					},
+					"format": {
+						"type": "string",
+						"enum": [
+							"decimal",
+							"hex"
+						],
+						"description": "The format of the token ID",
+						"example": "decimal"
+					},
+					"normalizeMetadata": {
+						"type": "boolean",
+						"description": "Should normalized metadata be returned?",
+						"example": false
+					},
+					"mediaItems": {
+						"type": "boolean",
+						"description": "Should preview media data be returned?",
+						"example": false
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NFTOwnersDataType": {
+				"properties": {
+					"tokenId": {
+						"type": "string"
+					},
+					"tokenAddress": {
+						"type": "string"
+					},
+					"ownerAddress": {
+						"type": "string"
+					},
+					"amount": {
+						"type": "string"
+					},
+					"blockNumber": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"tokenId",
+					"tokenAddress",
+					"ownerAddress",
+					"amount",
+					"blockNumber"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NFTOwnersResponseType": {
+				"properties": {
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"page_size": {
+						"type": "number",
+						"format": "double"
+					},
+					"cursor": {
+						"type": "string",
+						"nullable": true
+					},
+					"result": {
+						"items": {
+							"$ref": "#/components/schemas/NFTOwnersDataType"
+						},
+						"type": "array"
+					},
+					"hasNext": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"page",
+					"page_size",
+					"cursor",
+					"result"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_NFTOwnersResponseType_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/NFTOwnersResponseType"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"NFTTransactionDataType": {
+				"properties": {
+					"tokenId": {
+						"type": "string"
+					},
+					"amount": {
+						"type": "string"
+					},
+					"fromAddress": {
+						"type": "string"
+					},
+					"toAddress": {
+						"type": "string"
+					},
+					"tokenAddress": {
+						"type": "string"
+					},
+					"blockNumber": {
+						"type": "string"
+					},
+					"blockTimeStamp": {
+						"type": "string"
+					},
+					"txId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"tokenId",
+					"amount",
+					"fromAddress",
+					"toAddress",
+					"tokenAddress",
+					"blockNumber",
+					"blockTimeStamp",
+					"txId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NFTTransactionResponseType": {
+				"properties": {
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"page_size": {
+						"type": "number",
+						"format": "double"
+					},
+					"cursor": {
+						"type": "string",
+						"nullable": true
+					},
+					"result": {
+						"items": {
+							"$ref": "#/components/schemas/NFTTransactionDataType"
+						},
+						"type": "array"
+					},
+					"hasNext": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"page",
+					"page_size",
+					"cursor",
+					"result"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_NFTTransactionResponseType_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/NFTTransactionResponseType"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"GetNFTTransactionsByTokenIdQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "The desired page size of the result.",
+						"example": 10
+					},
+					"pageCursor": {
+						"type": "string",
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LanguageOptions": {
+				"type": "string",
+				"enum": [
+					"ko",
+					"en",
+					"cn",
+					"jp"
+				]
+			},
+			"ApplyReleaseRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 id",
+						"example": 1
+					},
+					"promotionalText": {
+						"type": "string",
+						"description": "소개글",
+						"example": "소개글"
+					},
+					"bannerUrl": {
+						"type": "string",
+						"description": "배너 이미지 url",
+						"example": "http://example.image/banner"
+					},
+					"cardUrl": {
+						"type": "string",
+						"description": "카드 이미지 url",
+						"example": "http://example.image/card"
+					},
+					"screenUrls": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "스크린샷 이미지 url 목록",
+						"example": [
+							"http://example.image/screenshot1",
+							"http://example.image/screenshot2"
+						]
+					},
+					"detailDescription": {
+						"type": "string",
+						"description": "상세 설명",
+						"example": "상세설명"
+					},
+					"siteUrl": {
+						"type": "string",
+						"description": "홈페이지 주소",
+						"example": "http://example.homepage.com"
+					},
+					"platformUrls": {
+						"items": {
+							"$ref": "#/components/schemas/PlatformUrl"
+						},
+						"type": "array",
+						"description": "플랫폼 링크\r\n플랫폼 종류 : \"iOS\" , \"Android\" , \"Steam\" , \"Window\", \"macOS\""
+					},
+					"selectedLanguages": {
+						"items": {
+							"$ref": "#/components/schemas/LanguageOptions"
+						},
+						"type": "array",
+						"description": "지원 언어 \"ko\" , \"en\" , \"cn\" , \"jp\""
+					}
+				},
+				"required": [
+					"appId",
+					"promotionalText",
+					"bannerUrl",
+					"cardUrl",
+					"screenUrls",
+					"detailDescription",
+					"siteUrl",
+					"platformUrls",
+					"selectedLanguages"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FindManyReleaseHistoryResponse": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double",
+						"description": "출시 히스토리 id"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 id"
+					},
+					"reviewId": {
+						"type": "string",
+						"description": "출시 심사 id"
+					},
+					"statusCd": {
+						"type": "string",
+						"description": "심사상태코드. 코드그룹(APRV_STAT), REQUEST: 심사요청, IN_REVIEW: 심사중, REJECTED: 반려, RELEASED: 출시, CANCELED: 취소됨"
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double",
+						"description": "작성자 id"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "작성일"
+					}
+				},
+				"required": [
+					"id",
+					"appId",
+					"reviewId",
+					"statusCd",
+					"createdId",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_FindManyReleaseHistoryResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/FindManyReleaseHistoryResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"GasCost": {
+				"properties": {
+					"ether": {
+						"type": "string"
+					},
+					"wei": {
+						"$ref": "#/components/schemas/BigNumber"
+					}
+				},
+				"required": [
+					"ether",
+					"wei"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SimulateTxResponse": {
+				"properties": {
+					"gasCost": {
+						"$ref": "#/components/schemas/GasCost"
+					},
+					"gasLimit": {
+						"$ref": "#/components/schemas/BigNumber"
+					}
+				},
+				"required": [
+					"gasCost",
+					"gasLimit"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_SimulateTxResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/SimulateTxResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"TokenTransferRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"walletId": {
+						"type": "number",
+						"format": "double"
+					},
+					"symbol": {
+						"type": "string"
+					},
+					"toAddress": {
+						"type": "string"
+					},
+					"amount": {
+						"type": "number",
+						"format": "double"
+					},
+					"chainId": {
+						"$ref": "#/components/schemas/SupportChainId"
+					}
+				},
+				"required": [
+					"walletId",
+					"symbol",
+					"toAddress",
+					"amount",
+					"chainId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TransferNativeResponse": {
+				"properties": {
+					"fromAddress": {
+						"type": "string",
+						"description": "sender's wallet address",
+						"example": "0xBcb0a748ea81B17274De6714ea60BD56E76E11cb"
+					},
+					"toAddress": {
+						"type": "string",
+						"description": "recipient wallet address",
+						"example": "0xBcb0a748ea81B17274De6714ea60BD56E76E11cb"
+					},
+					"amount": {
+						"type": "number",
+						"format": "double",
+						"description": "amount of native token",
+						"example": 1
+					},
+					"txHash": {
+						"type": "string",
+						"description": "transaction hash",
+						"example": "0x426eb17979ade27411a8209ff65305c14e892268bc66a074017ddd4a9c3f7d7e"
+					},
+					"rowData": {
+						"description": "rawdata from rpc result including receipt, logs, event"
+					}
+				},
+				"required": [
+					"amount",
+					"txHash",
+					"rowData"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TransferTokenResponse": {
+				"$ref": "#/components/schemas/TransferNativeResponse"
+			},
+			"CommonResponse_TransferTokenResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/TransferTokenResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"TransferTokenRequest": {
+				"properties": {
+					"toAddress": {
+						"type": "string",
+						"description": "recipient wallet address",
+						"example": "0xBcb0a748ea81B17274De6714ea60BD56E76E11cb"
+					},
+					"amount": {
+						"type": "number",
+						"format": "double",
+						"description": "amount of native token",
+						"example": 1
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"tokenContractAddress": {
+						"type": "string",
+						"description": "Include the smart contract address of the token you want to transfer",
+						"example": "0x507f60A808C4e69E4Af0395F9265C7F89CE03D04"
+					},
+					"privateKey": {
+						"type": "string",
+						"description": "private key",
+						"example": ""
+					}
+				},
+				"required": [
+					"toAddress",
+					"amount",
+					"tokenContractAddress",
+					"privateKey"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FindWalletByAppIdQueryResponse": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 id"
+					},
+					"walletId": {
+						"type": "string",
+						"description": "콘솔 지갑 id"
+					},
+					"address": {
+						"type": "string",
+						"description": "콘솔 지갑 주소"
+					},
+					"encPrivateKey": {
+						"type": "string",
+						"description": "암호화 프라이빗키"
+					},
+					"autoSignYn": {
+						"type": "string",
+						"enum": [
+							"Y",
+							"N"
+						],
+						"description": "자동 서명 여부"
+					},
+					"tokenCount": {
+						"type": "number",
+						"format": "double",
+						"description": "보유 토큰 수량"
+					},
+					"PMG_balance": {
+						"type": "string",
+						"description": "보유 PMG(기준 재화 토큰) 토큰 수량"
+					},
+					"memberAccessYn": {
+						"type": "string",
+						"enum": [
+							"Y",
+							"N"
+						],
+						"description": "지갑 설정 멤버 접근 허용 여부"
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 생성자 id"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "콘솔 지갑 생성일"
+					}
+				},
+				"required": [
+					"appId",
+					"walletId",
+					"address",
+					"encPrivateKey",
+					"autoSignYn",
+					"tokenCount",
+					"PMG_balance",
+					"memberAccessYn",
+					"createdId",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_FindWalletByAppIdQueryResponse_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/FindWalletByAppIdQueryResponse"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"WalletTransactionDataType": {
+				"properties": {
+					"txId": {
+						"type": "string"
+					},
+					"nonce": {
+						"type": "string"
+					},
+					"blockNumber": {
+						"type": "string"
+					},
+					"receiptStatus": {
+						"type": "string"
+					},
+					"fromAddress": {
+						"type": "string"
+					},
+					"toAddress": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"gas": {
+						"type": "string",
+						"nullable": true
+					},
+					"gasPrice": {
+						"type": "string"
+					},
+					"blockTimestamp": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"txId",
+					"nonce",
+					"blockNumber",
+					"receiptStatus",
+					"fromAddress",
+					"toAddress",
+					"value",
+					"gasPrice",
+					"blockTimestamp"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WalletTransactionsResponseType": {
+				"properties": {
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"page_size": {
+						"type": "number",
+						"format": "double"
+					},
+					"cursor": {
+						"type": "string",
+						"nullable": true
+					},
+					"result": {
+						"items": {
+							"$ref": "#/components/schemas/WalletTransactionDataType"
+						},
+						"type": "array"
+					},
+					"hasNext": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"page",
+					"page_size",
+					"cursor",
+					"result"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_WalletTransactionsResponseType_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/WalletTransactionsResponseType"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"GetTransactionsQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "The desired page size of the result.",
+						"example": 10
+					},
+					"fromDate": {
+						"type": "string"
+					},
+					"toDate": {
+						"type": "string"
+					},
+					"pageCursor": {
+						"type": "string",
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Webhook": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"requireYn": {
+						"type": "string"
+					},
+					"retryCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"webhookKindCd": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"webhookId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"requireYn",
+					"retryCount",
+					"webhookKindCd",
+					"name",
+					"webhookId"
+				],
+				"type": "object",
+				"description": "Model Webhook\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_Webhook_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Webhook"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateWebhookRequest": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "웹훅명"
+					},
+					"webhookKindCode": {
+						"type": "string",
+						"description": "웹훅 분류 코드\r\n코드그룹 : APS_WHK\r\n코드 : SWAP(게임재화 스왑) , TOKEN_IN(토큰 입금) , NFT_MINT(NFT 생성) , REVIEW_RESULT(심사결과 전송)"
+					},
+					"requireYn": {
+						"type": "string",
+						"description": "필수 여부 Y/N"
+					},
+					"userId": {
+						"type": "number",
+						"format": "double",
+						"description": "로그인한 회원 id"
+					}
+				},
+				"required": [
+					"name",
+					"webhookKindCode",
+					"requireYn",
+					"userId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_Webhook-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/Webhook"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"AppWebhook": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"encryptionYn": {
+						"type": "string"
+					},
+					"endpointUrl": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"profile": {
+						"type": "string"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"webhookId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"encryptionYn",
+					"endpointUrl",
+					"name",
+					"profile",
+					"appId",
+					"webhookId"
+				],
+				"type": "object",
+				"description": "Model AppWebhook\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_AppWebhook_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/AppWebhook"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateAppWebhookRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱id"
+					},
+					"profile": {
+						"type": "string",
+						"description": "프로필 : DEV(개발환경,테스트) , PRD(운영)"
+					},
+					"name": {
+						"type": "string",
+						"description": "웹훅명",
+						"minLength": 1,
+						"maxLength": 20
+					},
+					"encryptionYn": {
+						"type": "string",
+						"description": "구간암호화 여부 Y/N"
+					},
+					"endpointUrl": {
+						"type": "string",
+						"description": "엔드포인트 URL"
+					},
+					"webhookId": {
+						"type": "number",
+						"format": "double",
+						"description": "웹훅 id"
+					}
+				},
+				"required": [
+					"appId",
+					"profile",
+					"name",
+					"encryptionYn",
+					"endpointUrl",
+					"webhookId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateAppWebhookRequest": {
+				"$ref": "#/components/schemas/CreateAppWebhookRequest"
+			},
+			"CommonResponse_AppWebhook-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/AppWebhook"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyAppWebhooksQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"profile": {
+						"type": "string",
+						"enum": [
+							"DEV",
+							"PRD"
+						],
+						"description": "'DEV' | 'PRD'"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeleteAppWebhookRequest": {
+				"properties": {
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"profile": {
+						"type": "string",
+						"enum": [
+							"DEV",
+							"PRD"
+						]
+					},
+					"webhookId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"appId",
+					"profile",
+					"webhookId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AppWebhookLogsQueryResponse": {
+				"properties": {
+					"no": {
+						"type": "string",
+						"description": "웹훅 로그 번호"
+					},
+					"profile": {
+						"type": "string",
+						"description": "프로필 : DEV | PRD"
+					},
+					"webhookKindCode": {
+						"type": "string",
+						"description": "웹훅 분류 코드\r\n코드그룹 : APS_WHK\r\n코드 : SWAP(게임재화 스왑) , TOKEN_IN(토큰 입금) , NFT_MINT(NFT 생성) , REVIEW_RESULT(심사결과 전송)"
+					},
+					"webhookName": {
+						"type": "string",
+						"description": "웹훅 이름"
+					},
+					"url": {
+						"type": "string",
+						"description": "엔드포인트 URL"
+					},
+					"date": {
+						"type": "string",
+						"description": "날짜"
+					},
+					"status": {
+						"type": "string",
+						"description": "처리 상태"
+					},
+					"requestBody": {
+						"type": "string",
+						"description": "요청 BODY"
+					},
+					"responseBody": {
+						"type": "string",
+						"description": "응답 BODY"
+					}
+				},
+				"required": [
+					"no",
+					"profile",
+					"webhookKindCode",
+					"webhookName",
+					"url",
+					"date",
+					"status",
+					"requestBody",
+					"responseBody"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_AppWebhookLogsQueryResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/AppWebhookLogsQueryResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindManyAppWebhookLogsQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"from": {
+						"type": "string",
+						"description": "YYYY-MM-DD"
+					},
+					"to": {
+						"type": "string",
+						"description": "YYYY-MM-DD"
+					},
+					"profile": {
+						"type": "string",
+						"enum": [
+							"DEV",
+							"PRD"
+						],
+						"description": "'DEV' | 'PRD'"
+					},
+					"webhookKindCd": {
+						"type": "string",
+						"enum": [
+							"SWAP",
+							"TOKEN_IN",
+							"NFT_MINT",
+							"REVIEW_RESULT"
+						],
+						"description": "'SWAP' | 'TOKEN_IN' | 'NFT_MINT' | 'REVIEW_RESULT'"
+					},
+					"logStatus": {
+						"type": "string",
+						"enum": [
+							"Success",
+							"Fail"
+						],
+						"description": "'Success'|'Fail'"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AppWebhookLog": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"responseBody": {
+						"type": "string",
+						"nullable": true
+					},
+					"responseCd": {
+						"type": "string",
+						"nullable": true
+					},
+					"requestBody": {
+						"type": "string",
+						"nullable": true
+					},
+					"retriedCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"webhookKindNm": {
+						"type": "string"
+					},
+					"webhookKindCd": {
+						"type": "string"
+					},
+					"profile": {
+						"type": "string"
+					},
+					"webhookId": {
+						"type": "number",
+						"format": "double"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					},
+					"processDt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"no": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"responseBody",
+					"responseCd",
+					"requestBody",
+					"retriedCount",
+					"status",
+					"url",
+					"webhookKindNm",
+					"webhookKindCd",
+					"profile",
+					"webhookId",
+					"appId",
+					"processDt",
+					"no"
+				],
+				"type": "object",
+				"description": "Model AppWebhookLog\nThis table is a partition table and requires additional setup for migrations. Visit https://pris.ly/d/partition-tables for more info.\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_AppWebhookLog_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/AppWebhookLog"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"ResendAppWebhookRequest": {
+				"properties": {
+					"no": {
+						"type": "number",
+						"format": "double"
+					},
+					"processDt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"no",
+					"processDt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Workspace": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"workspaceId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"name",
+					"workspaceId"
+				],
+				"type": "object",
+				"description": "Model Workspace\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_Workspace_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Workspace"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateWorkspaceRequest": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "워크스페이스 이름"
+					},
+					"appId": {
+						"type": "number",
+						"format": "double",
+						"description": "앱 id"
+					}
+				},
+				"required": [
+					"name",
+					"appId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateWorkspaceRequest": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "변경할 워크스페이스 이름"
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FindManyWorkspacesResponse": {
+				"properties": {
+					"workspaceId": {
+						"type": "number",
+						"format": "double",
+						"description": "워크스페이스 id"
+					},
+					"name": {
+						"type": "string"
+					},
+					"isDefault": {
+						"type": "boolean",
+						"description": "디폴트 워크스페이스 여부"
+					}
+				},
+				"required": [
+					"workspaceId",
+					"name",
+					"isDefault"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_FindManyWorkspacesResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/FindManyWorkspacesResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindMAnyWorkspacesQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"appId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FindManyWorkspaceMembersResponse": {
+				"properties": {
+					"consoleMemberId": {
+						"type": "string",
+						"description": "회원 식별자"
+					},
+					"nickName": {
+						"type": "string",
+						"description": "닉네임"
+					},
+					"loginId": {
+						"type": "string",
+						"description": "로그인 아이디"
+					},
+					"authorityCode": {
+						"type": "string",
+						"description": "권한코드\r\n코드그룹: ACC_AUTH,\r\nMASTER: 마스터,\r\nNORMAL: 일반",
+						"example": "NORMAL"
+					}
+				},
+				"required": [
+					"consoleMemberId",
+					"nickName",
+					"loginId",
+					"authorityCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonResponse_FindManyWorkspaceMembersResponse-Array_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/FindManyWorkspaceMembersResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"FindMAnyWorkspaceMembersQueryParams": {
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"format": "double",
+						"description": "가져올 열 수."
+					},
+					"pageNo": {
+						"type": "number",
+						"format": "double",
+						"description": "페이지 번호."
+					},
+					"appId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"appId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WorkspaceMember": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"alarmYn": {
+						"type": "string"
+					},
+					"authCd": {
+						"type": "string"
+					},
+					"workspaceId": {
+						"type": "number",
+						"format": "double"
+					},
+					"memberId": {
+						"type": "string"
+					},
+					"workspaceMemberId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"alarmYn",
+					"authCd",
+					"workspaceId",
+					"memberId",
+					"workspaceMemberId"
+				],
+				"type": "object",
+				"description": "Model WorkspaceMember\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_WorkspaceMember_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/WorkspaceMember"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"CreateWorkspaceMemberRequest": {
+				"properties": {
+					"workspaceId": {
+						"type": "number",
+						"format": "double",
+						"description": "워크 스페이스 id",
+						"example": 1
+					},
+					"memberId": {
+						"type": "number",
+						"format": "double",
+						"description": "초대할 회원 id",
+						"example": 1
+					},
+					"authorityCode": {
+						"type": "string",
+						"enum": [
+							"MASTER",
+							"NORMAL"
+						],
+						"description": "권한코드. 코드그룹: ACC_AUTH\r\nMASTER: 마스터,\r\nNORMAL: 일반",
+						"example": "NORMAL",
+						"default": "\"NORMAL\""
+					}
+				},
+				"required": [
+					"workspaceId",
+					"memberId",
+					"authorityCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateWorkspaceMemberRequest": {
+				"$ref": "#/components/schemas/CreateWorkspaceMemberRequest"
+			},
+			"DeleteWorkspaceMemberRequest": {
+				"properties": {
+					"workspaceId": {
+						"type": "number",
+						"format": "double",
+						"description": "워크스페이스 id"
+					},
+					"memberId": {
+						"type": "number",
+						"format": "double",
+						"description": "회원 id"
+					}
+				},
+				"required": [
+					"workspaceId",
+					"memberId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"InviteWorkspaceMemberRequest": {
+				"properties": {
+					"workspaceId": {
+						"type": "number",
+						"format": "double",
+						"description": "워크스페이스 id",
+						"example": 1
+					},
+					"email": {
+						"type": "string",
+						"description": "이메일 주소",
+						"example": "test@naver.com"
+					},
+					"authorityCode": {
+						"type": "string",
+						"description": "권한코드\r\n코드그룹: ACC_AUTH,\r\nMASTER: 마스터,\r\nNORMAL: 일반",
+						"example": "NORMAL"
+					}
+				},
+				"required": [
+					"workspaceId",
+					"email",
+					"authorityCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WorkspaceInvitation": {
+				"properties": {
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedId": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"createdId": {
+						"type": "number",
+						"format": "double"
+					},
+					"acceptDt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"inviteDt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"email": {
+						"type": "string",
+						"nullable": true
+					},
+					"statusCd": {
+						"type": "string"
+					},
+					"receiverMemberId": {
+						"type": "string",
+						"nullable": true
+					},
+					"senderMemberId": {
+						"type": "string"
+					},
+					"workspaceId": {
+						"type": "number",
+						"format": "double"
+					},
+					"invitationId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"updatedAt",
+					"createdAt",
+					"updatedId",
+					"createdId",
+					"acceptDt",
+					"inviteDt",
+					"email",
+					"statusCd",
+					"receiverMemberId",
+					"senderMemberId",
+					"workspaceId",
+					"invitationId"
+				],
+				"type": "object",
+				"description": "Model WorkspaceInvitation\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments"
+			},
+			"CommonResponse_WorkspaceInvitation_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"$ref": "#/components/schemas/WorkspaceInvitation"
+					},
+					"error": {
+						"$ref": "#/components/schemas/ErrorVo"
+					}
+				},
+				"required": [
+					"error"
+				],
+				"type": "object"
+			},
+			"UpdateInvitationRequest": {
+				"properties": {
+					"statusCode": {
+						"type": "string",
+						"description": "변경 할 상태 값\r\n코드그룹: ACINV_STAT\r\nP: pending,\r\nA: accept,\r\nR: reject,\r\nC: account created",
+						"example": "A"
+					}
+				},
+				"required": [
+					"statusCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"devAuth": {
+				"type": "http",
+				"scheme": "basic"
+			},
+			"basic": {
+				"type": "http",
+				"scheme": "basic"
+			},
+			"token": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			},
+			"cookie": {
+				"type": "apiKey",
+				"name": "accessToken",
+				"in": "cookie"
+			}
+		}
+	},
+	"info": {
+		"title": "platpome-console-backend",
+		"version": "0.0.1",
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/common/code-groups": {
+			"get": {
+				"operationId": "FindManyCodeGroups",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_CommonCodeGroupQueryResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "공통 코드 그룹 목록 조회 API",
+				"tags": [
+					"[공통] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "name",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/common/codes": {
+			"get": {
+				"operationId": "FindManyCodes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_CommonCode-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "공통 코드 목록 조회 API",
+				"tags": [
+					"[공통] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "codeGroup",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/common/s3": {
+			"post": {
+				"operationId": "CreateAttachFile",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AttachFile_"
+								}
+							}
+						}
+					}
+				},
+				"description": "S3 파일 업로드 및 파일정보 DB 저장 API",
+				"tags": [
+					"[공통] Common"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									}
+								},
+								"required": [
+									"file"
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/common/sms/certification": {
+			"post": {
+				"operationId": "SendCertificationSMS",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_SendCertificationSMSResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "핸드폰 인증 > 문자 발송 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember",
+					"[공통] Common"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SendCertificationSMSRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/common/sms/certification/{messageId}": {
+			"post": {
+				"operationId": "CertificateCode",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "핸드폰 인증 > 번호 인증 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember",
+					"[공통] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "messageId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CertificateCodeRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ping": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Sample"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ping/db": {
+			"get": {
+				"operationId": "GetMessageDB",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Sample"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/ping/security": {
+			"get": {
+				"operationId": "GetMessageSecurity",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Sample"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/activities/console/{appId}": {
+			"get": {
+				"operationId": "FindManyActivities",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 관련 활동로그 목록 조회",
+				"tags": [
+					"[Activity] 활동로그"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "profile : 'DEV' | 'PRD'",
+						"in": "query",
+						"name": "profile",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"DEV",
+								"PRD"
+							]
+						}
+					},
+					{
+						"description": "YYYY-MM-DD 형식",
+						"in": "query",
+						"name": "from",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "YYYY-MM-DD 형식",
+						"in": "query",
+						"name": "to",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "'wallet' | 'NFT'",
+						"in": "query",
+						"name": "types",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "'API' | 'Console'",
+						"in": "query",
+						"name": "method",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/MethodType"
+						}
+					}
+				]
+			}
+		},
+		"/apps": {
+			"post": {
+				"operationId": "CreateApp",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_App_"
+								}
+							}
+						}
+					}
+				},
+				"description": "콘솔 메인 홈 > 앱 등록 API",
+				"tags": [
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateAppRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindManyApps",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindManyAppsQueryResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "콘솔 회원이 속한 앱 목록 조회 API",
+				"tags": [
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "앱 이름 검색 값 (포함 검색)",
+						"in": "query",
+						"name": "name",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/apps/{appId}": {
+			"put": {
+				"operationId": "UpdateApp",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_App_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 정보 수정 API",
+				"tags": [
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateAppRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindApp",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppDetailResponseType_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 상세 조회 API",
+				"tags": [
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "= 앱 아이디",
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/apps/api-keys": {
+			"post": {
+				"operationId": "CreateAppApiKeys",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppApiKey_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 API KEY 발급 API",
+				"tags": [
+					"[앱 API] AppApi",
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateAppApiKeyRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/apps/api-keys/{appId}": {
+			"get": {
+				"operationId": "FindManyAppApiKeys",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppApiKey-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 API KEY 목록 조회 API",
+				"tags": [
+					"[앱 API] AppApi",
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/apps/{appId}/chains/{chainId}/tokens": {
+			"get": {
+				"operationId": "GetAppWalletBalance",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWalletBalance-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 지갑 보유 토큰 조회",
+				"tags": [
+					"[앱] App"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/apps/api-keys/{apiKeyId}": {
+			"delete": {
+				"operationId": "DeleteAppApiKey",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 API KEY 삭제 API",
+				"tags": [
+					"[앱 API] AppApi",
+					"[앱] App"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "apiKeyId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/common/blockchains": {
+			"get": {
+				"operationId": "FindManyBlockChains",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_BlockChainResponseType-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "콘솔에서 취급하는 블록체인 목록 조회",
+				"tags": [
+					"[공통] Blockchain"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/members/check": {
+			"get": {
+				"operationId": "CheckMemberExist",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"data": {}
+									},
+									"required": [
+										"error",
+										"total",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "회원 가입 여부 확인 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/members/me": {
+			"get": {
+				"operationId": "FindMe",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ConsoleMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "내 정보 조회 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/members": {
+			"post": {
+				"operationId": "CreateConsoleMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ConsoleMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "개발자 콘솔 회원 등록 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateConsoleMemberRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindManyConsoleMembers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ConsoleMember-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "개발자 콘솔 회원 목록 조회 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember",
+					"[세팅] Setting",
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "nickName",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "email",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/members/{memberId}": {
+			"put": {
+				"operationId": "UpdateConsoleMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ConsoleMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "개발자 콘솔 회원 수정 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "memberId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateConsoleMemberRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindConsoleMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ConsoleMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "개발자 콘솔 회원 상세 조회 API",
+				"tags": [
+					"[콘솔 회원] ConsoleMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "memberId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/platform-contracts": {
+			"put": {
+				"operationId": "ReloadPlatformContracts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "PlatformContract 목록 갱신 API (관리자 사이트 개발 완료 까지 임시 적용 )",
+				"tags": [
+					"[플랫폼 컨트랙트] PlatformContract"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/chains/{chainId}/marketplace/{appId}/direct-listings": {
+			"post": {
+				"operationId": "CreateDirectListing",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_DirectListingResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "마켓에 NFT 등록 createDirectListing",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeRawData",
+						"required": false,
+						"schema": {
+							"default": false,
+							"type": "boolean"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DirectListingRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/marketplace/remove-listings": {
+			"post": {
+				"operationId": "RemoveFromListing",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "마켓 플레이스에 등록된 NFT 등록 취소 API",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CancelListingRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/marketplace/change-price": {
+			"put": {
+				"operationId": "ChangePriceFromListing",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"data": {}
+									},
+									"required": [
+										"total",
+										"error",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "마켓 플레이스에 등록된 NFT의 가격 수정 API",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ChangePriceRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/marketplace/listings": {
+			"get": {
+				"operationId": "GetListings",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"data": {}
+									},
+									"required": [
+										"error",
+										"total",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "마켓플레이스 컨트랙트에 등록된 NFT 목록 조회",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/marketplace/listings/{tokenId}": {
+			"get": {
+				"operationId": "FindManyTokenActivities",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"data": {}
+									},
+									"required": [
+										"error",
+										"total",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 트랜잭션 목록 조회 API",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "tokenId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/marketplace/direct-listings": {
+			"get": {
+				"operationId": "GetValidListings",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_ListingResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "마켓플레이스 NFT 목록 조회 - 유효목록 조회\r\n[유효조건]\r\n목록이 만료되지 않았습니다(시간이 endTimeInSeconds 이전임).\r\n목록이 취소되지 않았습니다.\r\n목록이 매수되지 않았습니다(모든 수량의 NFT를 구매하지 않았습니다).",
+				"tags": [
+					"[Marketplace] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "- 97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeRowData",
+						"required": true,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sellerAddress",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "tokenContract",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "tokenId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/ipfs/upload": {
+			"post": {
+				"operationId": "IpfsUpload",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_IpfsResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "IPFS 업로드",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"title": {
+										"type": "string"
+									},
+									"description": {
+										"type": "string"
+									},
+									"file": {
+										"type": "string",
+										"format": "binary"
+									}
+								},
+								"required": [
+									"title",
+									"description",
+									"file"
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/erc1155/mint-batch": {
+			"post": {
+				"operationId": "MintBatch",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 일괄 민팅 (ERC1155)",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MintBatchRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/wallets/{toAddress}/erc1155/mint-batch": {
+			"post": {
+				"operationId": "MintBatchTo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 일괄 민팅 (ERC1155)",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"description": "NFT 발행될 지갑주소",
+						"in": "path",
+						"name": "toAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MintBatchToRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/erc1155/mint-additional": {
+			"post": {
+				"operationId": "MintAdditionalSupply",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 추가 민팅",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MintAdditionalSupplyRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/chains/{chainId}/erc1155": {
+			"get": {
+				"operationId": "GetNFTs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_NftItemDataType-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 목록 조회",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/wallets/{walletAddress}/erc1155": {
+			"get": {
+				"operationId": "GetOwnedNFTs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_NftItemDataType-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "NFT 목록 지갑주소로 조회",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"description": "지갑주소",
+						"in": "path",
+						"name": "walletAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/erc1155/{tokenId}": {
+			"get": {
+				"operationId": "GetNFT",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_NftItemDetailDataType_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "tokenId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/erc1155/holders/{contractAddress}": {
+			"get": {
+				"operationId": "GetNFTOwners",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "전체 발행 된 NFT의 보유 목록 조회",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "contractAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "The desired page size of the result.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						},
+						"example": 10
+					},
+					{
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"in": "query",
+						"name": "pageCursor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						},
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					},
+					{
+						"description": "The format of the token ID",
+						"in": "query",
+						"name": "format",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"decimal",
+								"hex"
+							]
+						},
+						"example": "decimal"
+					},
+					{
+						"description": "Should normalized metadata be returned?",
+						"in": "query",
+						"name": "normalizeMetadata",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"example": false
+					},
+					{
+						"description": "Should preview media data be returned?",
+						"in": "query",
+						"name": "mediaItems",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"example": false
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/erc1155/{contractAddress}/{tokenId}/holders": {
+			"get": {
+				"operationId": "GetNFTOwnersByTokenId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_NFTOwnersResponseType_"
+								}
+							}
+						}
+					}
+				},
+				"description": "토큰 소유자 목록 호출",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "contractAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "tokenId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "The desired page size of the result.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						},
+						"example": 10
+					},
+					{
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"in": "query",
+						"name": "pageCursor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						},
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					},
+					{
+						"description": "The format of the token ID",
+						"in": "query",
+						"name": "format",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"decimal",
+								"hex"
+							]
+						},
+						"example": "decimal"
+					},
+					{
+						"description": "Should normalized metadata be returned?",
+						"in": "query",
+						"name": "normalizeMetadata",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"example": false
+					},
+					{
+						"description": "Should preview media data be returned?",
+						"in": "query",
+						"name": "mediaItems",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"example": false
+					}
+				]
+			}
+		},
+		"/chains/{chainId}/erc1155/{contractAddress}/{tokenId}/transactions": {
+			"get": {
+				"operationId": "GetNFTTransactionsByTokenId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_NFTTransactionResponseType_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Token 트랜잭션 목록 호출",
+				"tags": [
+					"[NFT] Common"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "contractAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "tokenId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "The desired page size of the result.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						},
+						"example": 10
+					},
+					{
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"in": "query",
+						"name": "pageCursor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						},
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					}
+				]
+			}
+		},
+		"/release": {
+			"post": {
+				"operationId": "ApplyRelease",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_App_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 출시 심사 요청 API",
+				"tags": [
+					"[출시] Release"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ApplyReleaseRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/release/{appId}": {
+			"put": {
+				"operationId": "CancelApplyRelease",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "출시 심사 신청 취소 API",
+				"tags": [
+					"[출시] Release"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "GetReleaseHistories",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindManyReleaseHistoryResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 심사 내역 목록 조회 API",
+				"tags": [
+					"[출시] Release"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/release/approve/{reviewId}": {
+			"post": {
+				"operationId": "ApproveRelease",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_App_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 출시 심사 승인 API",
+				"tags": [
+					"[출시] Release"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "reviewId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/tokens/simulates": {
+			"post": {
+				"operationId": "SimulatesTransferToken",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_SimulateTxResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "ERC20 토큰 전송 API 시뮬레이션",
+				"tags": [
+					"[토큰] Token"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TokenTransferRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tokens": {
+			"post": {
+				"operationId": "TransferToken",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "ERC20 토큰 전송 API",
+				"tags": [
+					"[토큰] Token"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TokenTransferRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallets/{appId}/member-access/{walletId}": {
+			"put": {
+				"operationId": "ToggleMemberAccess",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "지갑 설정 및 기능 마스터 외 멤버 접근 허용/비허용 처리 API",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "walletId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/wallets/{appId}/auto-sign/{walletId}": {
+			"put": {
+				"operationId": "ToggleAutoSign",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"data": {}
+									},
+									"required": [
+										"total",
+										"error",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "지갑 자동서명 허용/비허용 처리 API",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "walletId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/wallets/{chainId}/wallets/transfer-token": {
+			"post": {
+				"operationId": "TransferToken",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_TransferTokenResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "ERC20 토큰 전송 샘플",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "- 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"default": 80001,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "- true: include raw data, false: exclude raw data",
+						"in": "query",
+						"name": "includeRawData",
+						"required": false,
+						"schema": {
+							"default": true,
+							"type": "boolean"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TransferTokenRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/wallets/{chainId}/wallets/{appId}/detail": {
+			"get": {
+				"operationId": "FindWalletDetailByAppId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindWalletByAppIdQueryResponse_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				]
+			}
+		},
+		"/wallets/{chainId}/wallets/{appId}/address": {
+			"get": {
+				"operationId": "FindWalletByAppId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindWalletByAppIdQueryResponse_"
+								}
+							}
+						}
+					}
+				},
+				"description": "지갑 정보 조회 API",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					}
+				]
+			}
+		},
+		"/wallets/{chainId}/wallets/{walletAddress}/transactions": {
+			"get": {
+				"operationId": "GetTransactions",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_WalletTransactionsResponseType_"
+								}
+							}
+						}
+					}
+				},
+				"description": "지갑 transaction 내역 조회\r\ndocs: https://docs.moralis.io/web3-data-api/evm/reference/get-decoded-wallet-transaction?address=0xd8da6bf26964af9d7eed9e03e53415d37aa96045&chain=eth&include=internal_transactions\r\nTODO: fromDate, toDate, include 옵션 추가",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "- 97:BSC testnet, 56:BSC mainnet, 80001:mumbai testnet, 137:polygon mainnet",
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"description": "- wallet address",
+						"in": "path",
+						"name": "walletAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "The desired page size of the result.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						},
+						"example": 10
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "The cursor returned in the previous response (used for getting the next page).",
+						"in": "query",
+						"name": "pageCursor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						},
+						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21QYXJhbXMiOnsidG9rZW5BZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImtleXMiOlsiMTY5MzI3NzkxNC45NSJdLCJ3aGVyZSI6eyJ0b2tlbl9hZGRyZXNzIjoiMHg2YTJmNjlmNTc5YmIzMmMyNDBmNDZjNGZiNGQzMGM4YzhiY2NiYTQxIn0sImxpbWl0IjoxMSwib2Zmc2V0IjowLCJvcmRlciI6W10sImRpc2FibGVfdG90YWwiOnRydWUsImV4Y2x1ZGVfc3BhbSI6ZmFsc2UsInRvdGFsIjpudWxsLCJwYWdlIjoxLCJ0YWlsT2Zmc2V0IjoxLCJpYXQiOjE2OTQwNjcyNzZ9.mv1I78rtooJ7_rP03CpQHuqj9J7ds1VucZVu1yaGYZQ"
+					}
+				]
+			}
+		},
+		"/wallets/{chainId}/{walletAddress}/balances": {
+			"get": {
+				"operationId": "GetWalletNFTTokens",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"data": {}
+									},
+									"required": [
+										"error",
+										"total",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "지갑이 보유한 NFT 목록 조회 API",
+				"tags": [
+					"[Wallet] Common"
+				],
+				"security": [
+					{
+						"cookie": []
+					},
+					{
+						"token": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "chainId",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/SupportChainId"
+						}
+					},
+					{
+						"in": "path",
+						"name": "walletAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/webhooks": {
+			"post": {
+				"operationId": "CreateWebhook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_Webhook_"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 웹훅 등록은 시스템으로 처리 **\r\n웹훅 등록 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"deprecated": true,
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateWebhookRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindManyWebhooks",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_Webhook-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "웹훅 목록 조회 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/webhooks/apps": {
+			"post": {
+				"operationId": "CreateAppWebhook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhook_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 웹훅 등록 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateAppWebhookRequest"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "UpdateAppWebhook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhook_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 웹훅 수정 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateAppWebhookRequest"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteAppWebhook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhook_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteAppWebhookRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/webhooks/apps/{appId}": {
+			"get": {
+				"operationId": "FindManyAppWebhooks",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhook-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "앱 웹훅 목록 조회 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "'DEV' | 'PRD'",
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"DEV",
+								"PRD"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/webhooks/logs/{appId}": {
+			"get": {
+				"operationId": "FindManyAppWebhookLogs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhookLogsQueryResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "웹훅 로그 목록 조회 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "앱 id",
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "YYYY-MM-DD",
+						"in": "query",
+						"name": "from",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "YYYY-MM-DD",
+						"in": "query",
+						"name": "to",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "'DEV' | 'PRD'",
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"DEV",
+								"PRD"
+							]
+						}
+					},
+					{
+						"description": "'SWAP' | 'TOKEN_IN' | 'NFT_MINT' | 'REVIEW_RESULT'",
+						"in": "query",
+						"name": "webhookKindCd",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"SWAP",
+								"TOKEN_IN",
+								"NFT_MINT",
+								"REVIEW_RESULT"
+							]
+						}
+					},
+					{
+						"description": "'Success'|'Fail'",
+						"in": "query",
+						"name": "logStatus",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"Success",
+								"Fail"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/webhooks/logs/{appId}/{no}": {
+			"get": {
+				"operationId": "FindAppWebhookLog",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_AppWebhookLog_"
+								}
+							}
+						}
+					}
+				},
+				"description": "웹훅 로그 상세 조회 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "no",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/webhooks/resend": {
+			"put": {
+				"operationId": "ResendAppWebhook",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "웹훅 재전송",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ResendAppWebhookRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/webhooks/excel/logs/{appId}": {
+			"get": {
+				"operationId": "DownloadAppWebhookLogsExcel",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"total": {
+											"type": "number",
+											"format": "double"
+										},
+										"error": {
+											"$ref": "#/components/schemas/ErrorVo"
+										},
+										"data": {}
+									},
+									"required": [
+										"total",
+										"error",
+										"data"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "웹 훅 목록 엑셀 다운로드 API",
+				"tags": [
+					"[웹훅] Webhook"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "YYYY-MM-DD",
+						"in": "query",
+						"name": "from",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "YYYY-MM-DD",
+						"in": "query",
+						"name": "to",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "'DEV' | 'PRD'",
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"DEV",
+								"PRD"
+							]
+						}
+					},
+					{
+						"description": "'SWAP' | 'TOKEN_IN' | 'NFT_MINT' | 'REVIEW_RESULT'",
+						"in": "query",
+						"name": "webhookKindCd",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"SWAP",
+								"TOKEN_IN",
+								"NFT_MINT",
+								"REVIEW_RESULT"
+							]
+						}
+					},
+					{
+						"description": "'Success'|'Fail'",
+						"in": "query",
+						"name": "logStatus",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"Success",
+								"Fail"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/workspaces": {
+			"post": {
+				"operationId": "CreateWorkspace",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_Workspace_"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 0.1 버전에서는 워크스페이스 생성,수정 기획 없음 **\r\n** app 생성시 default 워크스페이스 생성 **\r\n워크스페이스 생성 API",
+				"tags": [
+					"[워크 스페이스] Workspace"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateWorkspaceRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindManyWorkspaces",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindManyWorkspacesResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 0.1 버전에서는 워크스페이스 생성,수정 기획 없음 **\r\n앱 하위 워크스페이스 목록 조회 API",
+				"tags": [
+					"[워크 스페이스] Workspace"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/workspaces/{id}": {
+			"put": {
+				"operationId": "UpdateWorkspace",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_Workspace_"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 0.1 버전에서는 워크스페이스 생성,수정 기획 없음 **\r\n워크스페이스 수정 API",
+				"tags": [
+					"[워크 스페이스] Workspace"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateWorkspaceRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindWorkspace",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_Workspace_"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 0.1 버전에서는 워크스페이스 생성,수정 기획 없음 **\r\n워크스페이스 상세 조회 API",
+				"tags": [
+					"[워크 스페이스] Workspace"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/workspace-members": {
+			"get": {
+				"operationId": "FindManyWorkspaceMembers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_FindManyWorkspaceMembersResponse-Array_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Setting > 팀원 및 권한 > 팀원 목록 조회 API",
+				"tags": [
+					"[세팅] Setting",
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"description": "가져올 열 수.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "페이지 번호.",
+						"in": "query",
+						"name": "pageNo",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "appId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateWorkspaceMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_WorkspaceMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Setting > 팀원 및 권한 > 워크스페이스 소속 팀원 추가 API",
+				"tags": [
+					"[세팅] Setting",
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateWorkspaceMemberRequest"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "UpdateWorkspaceMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_WorkspaceMember_"
+								}
+							}
+						}
+					}
+				},
+				"description": "워크스페이스 소속 팀원 권한 수정 API",
+				"tags": [
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateWorkspaceMemberRequest"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteWorkspaceMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "워크스페이스 소속 팀원 제거 API",
+				"tags": [
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteWorkspaceMemberRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/workspace-members/invitation": {
+			"post": {
+				"operationId": "InviteWorkspaceMember",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "** 0.2버전으로 미뤄짐 **\r\nSetting > 팀원 및 권한 > 팀 멤버 추가하기 (초대 메일 발송)",
+				"tags": [
+					"[세팅] Setting",
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/InviteWorkspaceMemberRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/workspace-members/invitation/{invitationId}": {
+			"put": {
+				"operationId": "UpdateInvitation",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse_WorkspaceInvitation_"
+								}
+							}
+						}
+					}
+				},
+				"description": "* ** 0.2버전으로 미뤄짐 **\r\n초대 메일 확인 후 승락/거절 처리 API",
+				"tags": [
+					"[세팅] Setting",
+					"[워크 스페이스 팀원] WorkspaceMember"
+				],
+				"deprecated": true,
+				"security": [
+					{
+						"token": []
+					},
+					{
+						"cookie": []
+					},
+					{
+						"devAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "invitationId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateInvitationRequest"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/api"
+		}
+	]
+}

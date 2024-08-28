@@ -1,0 +1,17 @@
+diff --git a/dist/metadataGeneration/typeResolver.js b/dist/metadataGeneration/typeResolver.js
+index 14b2510f9ce24cdd6f7beeae46cd54bbf09d4563..d9285d5fb862bf9dc55e874b1a4effc7cb0c4bc6 100644
+--- a/dist/metadataGeneration/typeResolver.js
++++ b/dist/metadataGeneration/typeResolver.js
+@@ -27,6 +27,12 @@ class TypeResolver {
+                     resolvedType: 'number',
+                 };
+             }
++            else if (syntaxKind === ts.SyntaxKind.BigIntKeyword) {
++                return {
++                    foundMatch: true,
++                    resolvedType: 'string',
++                };
++            }
+             else if (syntaxKind === ts.SyntaxKind.StringKeyword) {
+                 return {
+                     foundMatch: true,

@@ -1,0 +1,52 @@
+### Basic authorization.
+POST https://accounts.hqloud.blocksmith.xyz/realms/master/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=platpome-client-admin&client_secret=9spoKyl53wfThnbbOmP8zts21AgNIRQO
+
+
+> {%
+client.global.set("access_token", response.body.access_token);
+client.global.set("appId", (+client.global.get("appId")) +1);
+%}
+
+
+### Basic authorization.
+POST https://accounts.hqloud.blocksmith.xyz/admin/realms/platpome/clients
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+Accept: application/json, text/plain, */*
+
+{
+  "protocol": "openid-connect",
+  "clientId": {{appId}},
+  "name": "",
+  "description": "",
+  "publicClient": false,
+  "authorizationServicesEnabled": false,
+  "serviceAccountsEnabled": true,
+  "implicitFlowEnabled": true,
+  "directAccessGrantsEnabled": true,
+  "standardFlowEnabled": true,
+  "frontchannelLogout": true,
+  "attributes": {
+    "saml_idp_initiated_sso_url_name": "",
+    "oauth2.device.authorization.grant.enabled": false,
+    "oidc.ciba.grant.enabled": false
+  },
+  "alwaysDisplayInConsole": false,
+  "rootUrl": "",
+  "baseUrl": "",
+  "webOrigins": ["*"]
+}
+
+
+### Basic authorization with variables.
+GET https://accounts.hqloud.blocksmith.xyz/admin/realms/platpome/clients?clientId={{appId}}
+Authorization: Bearer {{access_token}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.body.length>0, "Response status is not 200");
+});
+%}

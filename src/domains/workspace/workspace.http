@@ -1,0 +1,26 @@
+################################# Workspace #################################
+
+###
+POST {{baseUrl}}/workspaces
+Content-Type: application/json
+
+{
+  "name": "workspace3",
+  "appId": 1
+}
+
+###
+GET {{baseUrl}}/workspaces/1
+
+
+###
+GET {{baseUrl}}/workspaces?appId=1&pageSize=10&pageNo=0
+
+
+###
+PUT {{baseUrl}}/workspaces/1
+Content-Type: application/json
+
+{
+  "name": "updateWorkspace1"
+}

@@ -1,0 +1,43 @@
+{
+  "entryFile": "src/index.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/**/*controller.ts"],
+  "spec": {
+    "outputDirectory": "public",
+    "specVersion": 3,
+    "securityDefinitions": {
+      "devAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "basic": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "token": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "cookie": {
+        "type": "apiKey",
+        "name": "accessToken",
+        "in": "cookie"
+      }
+    }
+  },
+  "routes": {
+    "authenticationModule": "src/tsoa-auth-middleware.ts",
+    "routesDir": "src/generated/tsoa"
+  },
+  "ignore": ["**/node_modules/**"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

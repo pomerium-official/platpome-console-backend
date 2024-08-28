@@ -1,0 +1,10 @@
+POST {{baseUrl}}/tokens
+Content-Type: application/json
+
+{
+  "walletId": 81,
+  "symbol": "FPMG",
+  "toAddress": "0xe27aA36Cf642baFE9584aB902614D06Bb7746372",
+  "amount": 10,
+  "chainId": 97
+}

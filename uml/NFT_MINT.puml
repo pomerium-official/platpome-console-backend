@@ -1,0 +1,29 @@
+@startuml
+title NFT Minting process
+
+actor 사용자 as user
+participant "APP/WEB" as app
+participant 백엔드 as api
+database RDB as db
+database "IPFS Storage" as ipfs
+database "On-Chain" as blockchain
+user -> app : 접속
+group NFT 파일 업로드
+app -> api : 1. 파일업로드 요청\n/api/ipfs/upload
+api -> ipfs : NftService.uploadIpfs
+ipfs -> ipfs : pinning
+ipfs -> api : 업로드결과\n(ipfs url)
+'api -> db : 저장
+api -> app : 파일업로드 응답 (ipfs url)
+end
+group NFT 발행
+app -> api : 2. NFT Mint 요청
+api -> blockchain: NftService.mintBatch()
+blockchain -> api : txHash
+api -> api : transaction 검증
+'api -> db : 저장
+api -> app : NFT Mint 결과 응답\n (요청정보, 결과txHash)
+api -> app : NFT Mint 결과 응답
+end
+
+@enduml

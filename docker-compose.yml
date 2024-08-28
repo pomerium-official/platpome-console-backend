@@ -1,0 +1,22 @@
+#version: '3'
+#services:
+#  instant-energy-user:
+#    container_name: base-template
+#    image: 
+#    ports:
+#      - "4444:44002"
+#    environment:
+#      - PORT=44002
+#      - NODE_ENV=production
+
+# docker login registry.acloud.blocksmith.xyz
+version: '3'
+services:
+  frontend:
+    build:
+      context: packages/backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production

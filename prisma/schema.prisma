@@ -1,0 +1,910 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("SERVICE_DATABASE_URL")
+}
+
+/// This table is a partition table and requires additional setup for migrations. Visit https://pris.ly/d/partition-tables for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ActivityLog {
+  id          BigInt   @default(autoincrement())
+  appId       Int?     @map("app_id")
+  profile     String?  @default("GEN") @db.Char(3)
+  account     String?  @db.VarChar(50)
+  method      String?  @db.VarChar(10)
+  memberId    BigInt   @map("member_id")
+  type        String?  @db.VarChar(20)
+  activity    String?  @db.VarChar(100)
+  browser     String?  @db.VarChar(100)
+  requestBody String?  @map("request_body") @db.Text
+  txId        String?  @map("tx_id") @db.VarChar(100)
+  description String?  @db.VarChar(200)
+  os          String?  @db.VarChar(20)
+  ipAddress   String?  @map("ip_address") @db.VarChar(20)
+  createdAt   DateTime @default(now()) @map("created_at") @db.DateTime(0)
+
+  @@id([id, createdAt])
+  @@map("activity_log")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model App {
+  appId                   Int                       @id @default(autoincrement()) @map("app_id")
+  name                    String                    @db.VarChar(50)
+  iconUrl                 String?                   @map("icon_url") @db.VarChar(400)
+  blockChainId            String                    @map("block_chain_id") @db.VarChar(10)
+  cardUrl                 String?                   @map("card_url") @db.VarChar(400)
+  promotionalText         String?                   @map("promotional_text") @db.VarChar(100)
+  bannerUrl               String?                   @map("banner_url") @db.VarChar(400)
+  detailDescription       String?                   @map("detail_description") @db.LongText
+  siteUrl                 String?                   @map("site_url") @db.VarChar(100)
+  createdId               Int                       @map("created_id")
+  updatedId               Int?                      @map("updated_id")
+  createdAt               DateTime                  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt               DateTime?                 @map("updated_at") @db.Timestamp(0)
+  appApiKey               AppApiKey[]
+  appDetailAggregate      AppDetailAggregate[]
+  appNft                  AppNft[]
+  appNftNew               AppNftNew[]
+  appRelease              AppRelease?
+  appReleaseReviewHistory AppReleaseReviewHistory[]
+  appWallet               AppWallet[]
+  appWebhook              AppWebhook[]
+  appWorkspace            AppWorkspace[]
+  releaseReview           ReleaseReview[]
+
+  @@map("app")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppApiKey {
+  apiKeyId     Int       @id @default(autoincrement()) @map("api_key_id")
+  appId        Int       @map("app_id")
+  name         String    @db.VarChar(50)
+  apiKeyKindCd String    @map("api_key_kind_cd") @db.VarChar(20)
+  expireDt     DateTime  @default(now()) @map("expire_dt") @db.DateTime(0)
+  key          String    @db.VarChar(32)
+  createdId    Int       @map("created_id")
+  updatedId    Int?      @map("updated_id")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(0)
+  app          App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_api_key")
+
+  @@index([appId], map: "FK_app_TO_app_api_key")
+  @@index([appId, apiKeyKindCd, expireDt], map: "IX_app_api_key")
+  @@map("app_api_key")
+}
+
+model AppDetailAggregate {
+  appDetailAggregateId BigInt    @id @default(autoincrement()) @map("app_detail_aggregate_id")
+  appId                Int       @map("app_id")
+  aggregateGroupCd     String    @map("aggregate_group_cd") @db.VarChar(20)
+  aggregateCd          String    @map("aggregate_cd") @db.VarChar(20)
+  commonCode           String?   @map("common_code") @db.VarChar(20)
+  number               BigInt?
+  string               String?   @db.VarChar(2000)
+  text                 String?   @db.Text
+  dynamic              Bytes?    @db.Blob
+  createdId            Int       @default(-1) @map("created_id")
+  updatedId            Int?      @map("updated_id")
+  createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt            DateTime? @map("updated_at") @db.Timestamp(0)
+  rowId                String?   @map("row_id") @db.VarChar(36)
+  app                  App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_detail_aggregate")
+
+  @@index([aggregateGroupCd, aggregateCd], map: "IX_app_detail_aggregate_01")
+  @@index([appId, aggregateGroupCd, aggregateCd], map: "IX_app_detail_aggregate_02")
+  @@map("app_detail_aggregate")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppLike {
+  appId      Int        @map("app_id")
+  memberId   BigInt     @map("member_id")
+  appRelease AppRelease @relation(fields: [appId], references: [appId], onDelete: Cascade, map: "app_like_FK")
+  xMember    XMember    @relation(fields: [memberId], references: [memberId], onDelete: Cascade, map: "app_like_FK_1")
+
+  @@id([appId, memberId])
+  @@index([memberId], map: "app_like_FK_1")
+  @@map("app_like")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppNft {
+  nftId            BigInt           @id @default(autoincrement()) @map("nft_id")
+  appId            Int              @map("app_id")
+  tokenId          BigInt           @map("token_id")
+  chainId          Int?             @default(97) @map("chain_id")
+  contractAddress  String           @map("contract_address") @db.VarChar(42)
+  contractStandard String           @default("ERC-1155") @map("contract_standard") @db.VarChar(50)
+  name             String           @db.VarChar(50)
+  imageUrl         String           @map("image_url") @db.VarChar(500)
+  thumbnailUrl     String           @map("thumbnail_url") @db.VarChar(500)
+  description      String?          @db.VarChar(2000)
+  totalCnt         Int              @map("total_cnt")
+  remainCnt        Int              @map("remain_cnt")
+  saleStatCd       String           @default("WAIT") @map("sale_stat_cd") @db.VarChar(20)
+  price            Decimal?         @default(0.000000000000000000) @db.Decimal(36, 18)
+  priceSymbole     String?          @map("price_symbole") @db.VarChar(20)
+  priceSymbol      String?          @map("price_symbol") @db.VarChar(20)
+  likeCnt          Int?             @default(0) @map("like_cnt")
+  createdId        Int              @map("created_id")
+  updatedId        Int?             @map("updated_id")
+  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt        DateTime?        @map("updated_at") @db.Timestamp(0)
+  listingId        BigInt?          @default(0) @map("listing_id")
+  app              App              @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_nft")
+  appNftProperty   AppNftProperty[]
+
+  @@index([appId], map: "FK_app_TO_app_nft")
+  @@map("app_nft")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppNftProperty {
+  nftPropertyId BigInt    @id @default(autoincrement()) @map("nft_property_id")
+  nftId         BigInt    @map("nft_id")
+  typeCd        String    @map("type_cd") @db.VarChar(20)
+  displayTypeCd String    @map("display_type_cd") @db.VarChar(20)
+  key           String    @db.VarChar(20)
+  value         String    @db.VarChar(200)
+  createdId     Int       @map("created_id")
+  updatedId     Int?      @map("updated_id")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @map("updated_at") @db.Timestamp(0)
+  appNft        AppNft    @relation(fields: [nftId], references: [nftId], onUpdate: Restrict, map: "FK_app_nft_TO_app_nft_property")
+
+  @@index([nftId], map: "FK_app_nft_TO_app_nft_property")
+  @@map("app_nft_property")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppRelease {
+  appId                     Int                         @id @map("app_id")
+  name                      String                      @db.VarChar(50)
+  iconUrl                   String?                     @map("icon_url") @db.VarChar(400)
+  blockChainId              String                      @map("block_chain_id") @db.VarChar(10)
+  cardUrl                   String?                     @map("card_url") @db.VarChar(400)
+  promotionalText           String?                     @map("promotional_text") @db.VarChar(100)
+  bannerUrl                 String?                     @map("banner_url") @db.VarChar(400)
+  screenUrlsJson            String?                     @map("screen_urls_json") @db.LongText
+  detailDescription         String?                     @map("detail_description") @db.LongText
+  siteUrl                   String?                     @map("site_url") @db.VarChar(100)
+  platformUrlsJson          String?                     @map("platform_urls_json") @db.LongText
+  languagesJson             String?                     @map("languages_json") @db.VarChar(200)
+  createdId                 Int                         @map("created_id")
+  updatedId                 Int?                        @map("updated_id")
+  createdAt                 DateTime                    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt                 DateTime?                   @map("updated_at") @db.Timestamp(0)
+  appLike                   AppLike[]
+  app                       App                         @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "app_release_FK")
+  appReleaseDetailAggregate AppReleaseDetailAggregate[]
+
+  @@map("app_release")
+}
+
+model AppReleaseDetailAggregate {
+  appDetailAggregateId BigInt     @id @default(autoincrement()) @map("app_detail_aggregate_id")
+  appId                Int        @map("app_id")
+  rowId                String     @map("row_id") @db.VarChar(36)
+  aggregateGroupCd     String     @map("aggregate_group_cd") @db.VarChar(20)
+  aggregateCd          String     @map("aggregate_cd") @db.VarChar(20)
+  commonCode           String?    @map("common_code") @db.VarChar(20)
+  number               BigInt?
+  string               String?    @db.VarChar(2000)
+  text                 String?    @db.Text
+  dynamic              Bytes?     @db.Blob
+  createdId            Int        @map("created_id")
+  updatedId            Int?       @map("updated_id")
+  createdAt            DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt            DateTime?  @map("updated_at") @db.Timestamp(0)
+  appRelease           AppRelease @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_release_TO_app_release_detail_aggregate")
+
+  @@index([aggregateGroupCd, aggregateCd], map: "IX_app_release_detail_aggregate")
+  @@index([appId, aggregateGroupCd, aggregateCd], map: "IX_app_release_detail_aggregate2")
+  @@map("app_release_detail_aggregate")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppReleaseReviewHistory {
+  id            Int           @id @default(autoincrement())
+  appId         Int           @map("app_id")
+  reviewId      BigInt        @map("review_id")
+  statusCd      String        @default("REQUEST") @map("status_cd") @db.VarChar(20)
+  createdId     Int           @map("created_id")
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
+  app           App           @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "app_release_review_history_FK")
+  releaseReview ReleaseReview @relation(fields: [reviewId], references: [reviewId], onUpdate: Restrict, map: "app_release_review_history_FK_1")
+
+  @@index([appId], map: "app_release_review_history_FK")
+  @@index([reviewId], map: "app_release_review_history_FK_1")
+  @@map("app_release_review_history")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppWallet {
+  appId          Int       @map("app_id")
+  walletId       BigInt    @map("wallet_id")
+  name           String?   @db.VarChar(50)
+  defaultYn      String    @map("default_yn") @db.Char(1)
+  autoSignYn     String    @default("N") @map("auto_sign_yn") @db.Char(1)
+  memberAccessYn String    @default("N") @map("member_access_yn") @db.Char(1)
+  poolYn         String    @map("pool_yn") @db.Char(1)
+  createdId      Int       @map("created_id")
+  updatedId      Int?      @map("updated_id")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt      DateTime? @map("updated_at") @db.Timestamp(0)
+  app            App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_wallet")
+  wallet         Wallet    @relation(fields: [walletId], references: [walletId], onUpdate: Restrict, map: "app_wallet_FK")
+
+  @@id([appId, walletId])
+  @@index([walletId], map: "FK_wallet_TO_app_wallet")
+  @@map("app_wallet")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppWebhook {
+  webhookId    Int       @map("webhook_id")
+  appId        Int       @map("app_id")
+  profile      String    @default("DEV") @db.Char(3)
+  name         String    @db.VarChar(20)
+  endpointUrl  String    @map("endpoint_url") @db.VarChar(250)
+  encryptionYn String    @default("N") @map("encryption_yn") @db.Char(1)
+  createdId    Int       @map("created_id")
+  updatedId    Int?      @map("updated_id")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(0)
+  app          App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_webhook")
+  webhook      Webhook   @relation(fields: [webhookId], references: [webhookId], onUpdate: Restrict, map: "FK_webhook_TO_app_webhook")
+
+  @@id([webhookId, appId, profile])
+  @@index([appId], map: "FK_app_TO_app_webhook")
+  @@map("app_webhook")
+}
+
+/// This table is a partition table and requires additional setup for migrations. Visit https://pris.ly/d/partition-tables for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppWebhookLog {
+  no            BigInt    @default(autoincrement())
+  processDt     DateTime  @map("process_dt") @db.DateTime(0)
+  appId         Int       @default(-1) @map("app_id")
+  webhookId     Int       @map("webhook_id")
+  profile       String    @db.Char(3)
+  webhookKindCd String    @map("webhook_kind_cd") @db.VarChar(20)
+  webhookKindNm String    @map("webhook_kind_nm") @db.VarChar(50)
+  url           String    @db.VarChar(400)
+  status        String    @db.VarChar(10)
+  retriedCount  Int       @map("retried_count") @db.TinyInt
+  requestBody   String?   @map("request_body") @db.Text
+  responseCd    String?   @map("response_cd") @db.VarChar(300)
+  responseBody  String?   @map("response_body") @db.VarChar(2000)
+  createdId     Int       @map("created_id")
+  updatedId     Int?      @map("updated_id")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @map("updated_at") @db.Timestamp(0)
+
+  @@id([no, processDt])
+  @@index([appId, processDt], map: "IX_APP_WEBHOOK_LOG_01")
+  @@index([appId, webhookId, profile], map: "IX_APP_WEBHOOK_LOG_02")
+  @@map("app_webhook_log")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppWorkspace {
+  appId       Int       @map("app_id")
+  workspaceId Int       @map("workspace_id")
+  defaultYn   String    @default("Y") @map("default_yn") @db.Char(1)
+  createdId   Int       @map("created_id")
+  updatedId   Int?      @map("updated_id")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime? @map("updated_at") @db.Timestamp(0)
+  app         App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_workspace")
+  workspace   Workspace @relation(fields: [workspaceId], references: [workspaceId], onUpdate: Restrict, map: "FK_workspace_TO_app_workspace")
+
+  @@id([appId, workspaceId])
+  @@index([workspaceId], map: "FK_workspace_TO_app_workspace")
+  @@map("app_workspace")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ApproveWallet {
+  walletId      BigInt    @id @map("wallet_id")
+  address       String    @db.VarChar(42)
+  encPrivateKey String    @map("enc_private_key") @db.VarChar(255)
+  createdId     Int       @map("created_id")
+  updatedId     Int?      @map("updated_id")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @map("updated_at") @db.Timestamp(0)
+  wallet        Wallet    @relation(fields: [walletId], references: [walletId], onUpdate: Restrict, map: "approve_wallet_FK")
+
+  @@map("approve_wallet")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AttachFile {
+  attachFileId BigInt    @id @default(autoincrement()) @map("attach_file_id")
+  path         String?   @db.VarChar(200)
+  fileUrl      String    @map("file_url") @db.VarChar(255)
+  fileName     String    @map("file_name") @db.VarChar(255)
+  fileChgName  String?   @map("file_chg_name") @db.VarChar(120)
+  fileExt      String?   @map("file_ext") @db.VarChar(10)
+  fileSize     Int?      @map("file_size")
+  createdId    Int       @map("created_id")
+  updatedId    Int?      @map("updated_id")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(0)
+
+  @@map("attach_file")
+}
+
+model Blockchain {
+  blockchainId      String              @id @map("blockchain_id") @db.VarChar(10)
+  name              String              @db.VarChar(30)
+  symbolImageUrl    String              @map("symbol_image_url") @db.VarChar(200)
+  useYn             String              @default("Y") @map("use_yn") @db.Char(1)
+  createdId         Int                 @map("created_id")
+  updatedId         Int?                @map("updated_id")
+  createdAt         DateTime            @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime?           @map("updated_at") @db.Timestamp(0)
+  blockchainNetwork BlockchainNetwork[]
+
+  @@map("blockchain")
+}
+
+model BlockchainNetwork {
+  chainId      String     @id @map("chain_id") @db.VarChar(30)
+  blockchainId String     @map("blockchain_id") @db.VarChar(10)
+  name         String     @db.VarChar(50)
+  rpcUrl       String     @map("rpc_url") @db.VarChar(200)
+  symbol       String     @db.VarChar(10)
+  explorerUrl  String?    @map("explorer_url") @db.VarChar(200)
+  useYn        String     @default("Y") @map("use_yn") @db.Char(1)
+  mainetYn     String     @default("N") @map("mainet_yn") @db.Char(1)
+  createdId    Int        @map("created_id")
+  updatedId    Int?       @map("updated_id")
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime?  @map("updated_at") @db.Timestamp(0)
+  blockchain   Blockchain @relation(fields: [blockchainId], references: [blockchainId], onUpdate: Restrict, map: "FK_blockchain_TO_blockchain_network")
+  contract     Contract[]
+  nft          Nft[]
+
+  @@index([blockchainId], map: "FK_blockchain_TO_blockchain_network")
+  @@map("blockchain_network")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Board {
+  id                           Int       @id @default(autoincrement())
+  title                        String?   @db.Text
+  content                      String?   @db.Text
+  boardCd                      String?   @map("board_cd") @db.Char(10)
+  creatorId                    Int       @map("creator_id")
+  updatorId                    Int?      @map("updator_id")
+  createdAt                    DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt                    DateTime? @map("updated_at") @db.Timestamp(0)
+  memberBoardCreatorIdTomember Member    @relation("board_creator_idTomember", fields: [creatorId], references: [memberId], map: "board_FK")
+  memberBoardUpdatorIdTomember Member?   @relation("board_updator_idTomember", fields: [updatorId], references: [memberId], onDelete: Restrict, map: "board_FK_1")
+
+  @@index([creatorId], map: "board_FK")
+  @@index([updatorId], map: "board_FK_1")
+  @@map("board")
+}
+
+model Category {
+  categoryId       Int            @id @default(autoincrement()) @map("category_id")
+  groupCode        String?        @map("group_code") @db.VarChar(20)
+  name             String         @db.VarChar(50)
+  parentCategoryId Int            @map("parent_category_id")
+  sort             Int            @default(0)
+  createdId        Int            @default(-1) @map("created_id")
+  updatedId        Int?           @map("updated_id")
+  createdAt        DateTime       @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt        DateTime?      @map("updated_at") @db.Timestamp(0)
+  categoryGroup    CategoryGroup? @relation(fields: [groupCode], references: [groupCode], onDelete: Restrict, onUpdate: Restrict, map: "FK_category_group_TO_category")
+
+  @@index([groupCode], map: "FK_category_group_TO_category")
+  @@map("category")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model CategoryGroup {
+  groupCode   String     @id @map("group_code") @db.VarChar(20)
+  name        String     @db.VarChar(100)
+  description String?    @db.VarChar(255)
+  createdId   Int        @default(-1) @map("created_id")
+  updatedId   Int?       @map("updated_id")
+  createdAt   DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime?  @map("updated_at") @db.Timestamp(0)
+  category    Category[]
+
+  @@map("category_group")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model CommonCode {
+  code            String          @db.VarChar(20)
+  codeGroup       String          @map("code_group") @db.VarChar(20)
+  name            String          @db.VarChar(100)
+  description     String?         @db.VarChar(255)
+  order           Int
+  createdId       Int             @default(-1) @map("created_id")
+  updatedId       Int?            @map("updated_id")
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt       DateTime?       @map("updated_at") @db.Timestamp(0)
+  commonCodeGroup CommonCodeGroup @relation(fields: [codeGroup], references: [codeGroup], onUpdate: Restrict, map: "FK_common_code_group_TO_common_code")
+
+  @@id([code, codeGroup])
+  @@unique([codeGroup, order], map: "UIX_common_code")
+  @@index([codeGroup], map: "FK_common_code_group_TO_common_code")
+  @@map("common_code")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model CommonCodeGroup {
+  codeGroup   String       @id @map("code_group") @db.VarChar(20)
+  name        String       @db.VarChar(100)
+  description String?      @db.VarChar(255)
+  order       Int?
+  createdId   Int          @default(-1) @map("created_id")
+  updatedId   Int?         @map("updated_id")
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime?    @map("updated_at") @db.Timestamp(0)
+  commonCode  CommonCode[]
+
+  @@index([order], map: "IX_common_code_group")
+  @@map("common_code_group")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ConsoleMember {
+  memberId                                                              BigInt                @id @default(autoincrement()) @map("member_id")
+  platformMemberId                                                      String                @unique(map: "UIX_console_member2") @map("platform_member_id") @db.VarChar(36)
+  loginId                                                               String                @unique(map: "UIX_console_member") @map("login_id") @db.VarChar(100)
+  name                                                                  String                @db.VarChar(100)
+  nickname                                                              String                @db.VarChar(100)
+  email                                                                 String                @db.VarChar(100)
+  phone                                                                 String?               @db.VarChar(20)
+  phoneCertificateYn                                                    String?               @default("N") @map("phone_certificate_yn") @db.Char(1)
+  recoveryEmail                                                         String?               @map("recovery_email") @db.VarChar(200)
+  createdId                                                             Int                   @map("created_id")
+  updatedId                                                             Int?                  @map("updated_id")
+  createdAt                                                             DateTime              @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt                                                             DateTime?             @map("updated_at") @db.Timestamp(0)
+  workspaceInvitationWorkspaceInvitationSenderMemberIdToconsoleMember   WorkspaceInvitation[] @relation("workspace_invitation_sender_member_idToconsole_member")
+  workspaceInvitationWorkspaceInvitationReceiverMemberIdToconsoleMember WorkspaceInvitation[] @relation("workspace_invitation_receiver_member_idToconsole_member")
+  workspaceMember                                                       WorkspaceMember[]
+
+  @@map("console_member")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Contract {
+  contractId         BigInt             @id @default(autoincrement()) @map("contract_id")
+  chainId            String             @map("chain_id") @db.VarChar(30)
+  contractTypeCd     String?            @map("contract_type_cd") @db.VarChar(20)
+  contractAddress    String             @map("contract_address") @db.VarChar(50)
+  contractStandard   String?            @map("contract_standard") @db.VarChar(50)
+  ensAddress         String?            @map("ens_address") @db.VarChar(200)
+  symbol             String?            @db.VarChar(5)
+  generalSymbol      String?            @map("general_symbol") @db.VarChar(5)
+  abi                String?            @db.Text
+  bytecode           Bytes?             @db.Blob
+  ownerWalletAddress String?            @map("owner_wallet_address") @db.VarChar(42)
+  createdId          Int                @map("created_id")
+  updatedId          Int?               @map("updated_id")
+  createdAt          DateTime           @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt          DateTime?          @map("updated_at") @db.Timestamp(0)
+  appNftProduct      AppNftProduct[]
+  blockchainNetwork  BlockchainNetwork  @relation(fields: [chainId], references: [chainId], onUpdate: Restrict, map: "FK_blockchain_network_TO_contract")
+  nft                Nft[]
+  platformContract   PlatformContract[]
+
+  @@index([chainId], map: "FK_blockchain_network_TO_contract")
+  @@map("contract")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Member {
+  memberId                              Int          @id @default(autoincrement()) @map("member_id")
+  memberUid                             String?      @unique(map: "member_un") @map("member_uid") @db.Char(36)
+  email                                 String?      @db.VarChar(200)
+  name                                  String?      @db.VarChar(30)
+  password                              String?      @db.VarChar(200)
+  sexdstn                               String?      @db.Char(1)
+  birthday                              String?      @db.VarChar(10)
+  ci                                    String?      @db.Char(64)
+  di                                    String?      @db.VarChar(100)
+  mobileNumber                          String?      @map("mobile_number") @db.VarChar(13)
+  creatorId                             Int?         @map("creator_id")
+  updatorId                             Int?         @map("updator_id")
+  createdAt                             DateTime?    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt                             DateTime?    @map("updated_at") @db.Timestamp(0)
+  accountId                             BigInt?      @map("account_id")
+  delYn                                 String?      @default("N") @map("del_yn") @db.Char(1)
+  boardBoardCreatorIdTomember           Board[]      @relation("board_creator_idTomember")
+  boardBoardUpdatorIdTomember           Board[]      @relation("board_updator_idTomember")
+  termsGroupTermsGroupCreatorIdTomember TermsGroup[] @relation("terms_group_creator_idTomember")
+  termsGroupTermsGroupUpdatorIdTomember TermsGroup[] @relation("terms_group_updator_idTomember")
+  termsMstTermsMstCreatorIdTomember     TermsMst[]   @relation("terms_mst_creator_idTomember")
+  termsMstTermsMstUpdatorIdTomember     TermsMst[]   @relation("terms_mst_updator_idTomember")
+
+  @@map("member")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model NftLike {
+  tokenId  BigInt  @map("token_id")
+  memberId BigInt  @map("member_id")
+  xMember  XMember @relation(fields: [memberId], references: [memberId], onDelete: Cascade, map: "nft_like_FK_1")
+
+  @@id([tokenId, memberId])
+  @@index([memberId], map: "nft_like_FK_1")
+  @@map("nft_like")
+}
+
+model PlatformContract {
+  contractCd  String    @id @map("contract_cd") @db.VarChar(20)
+  contractId  BigInt?   @map("contract_id")
+  name        String    @db.VarChar(50)
+  description String?   @db.VarChar(255)
+  iconUrl     String?   @map("icon_url") @db.VarChar(500)
+  useYn       String    @default("Y") @map("use_yn") @db.Char(1)
+  createdId   Int       @map("created_id")
+  updatedId   Int?      @map("updated_id")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime? @map("updated_at") @db.Timestamp(0)
+  contract    Contract? @relation(fields: [contractId], references: [contractId], onDelete: Restrict, onUpdate: Restrict, map: "FK_contract_TO_platform_contract")
+
+  @@index([contractId], map: "platform_contract_FK")
+  @@map("platform_contract")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ReleaseReview {
+  reviewId                BigInt                    @id @default(autoincrement()) @map("review_id")
+  appId                   Int?                      @map("app_id")
+  statusCd                String                    @default("REQUEST") @map("status_cd") @db.VarChar(20)
+  reviewRequestDt         DateTime                  @default(now()) @map("review_request_dt") @db.Timestamp(0)
+  rewviewStartDt          DateTime?                 @map("rewview_start_dt") @db.Timestamp(0)
+  reviewEndDt             DateTime?                 @map("review_end_dt") @db.Timestamp(0)
+  createdId               Int                       @map("created_id")
+  updatedId               Int?                      @map("updated_id")
+  createdAt               DateTime                  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt               DateTime?                 @map("updated_at") @db.Timestamp(0)
+  appReleaseReviewHistory AppReleaseReviewHistory[]
+  app                     App?                      @relation(fields: [appId], references: [appId], onDelete: Restrict, onUpdate: Restrict, map: "FK_app_TO_release_review")
+  releaseReviewDetail     ReleaseReviewDetail[]
+
+  @@index([appId], map: "FK_app_TO_release_review")
+  @@map("release_review")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ReleaseReviewDetail {
+  reviewId       BigInt        @map("review_id")
+  reviewKindId   String        @map("review_kind_id") @db.VarChar(20)
+  detailStatusCd String        @default("PENDING") @map("detail_status_cd") @db.VarChar(20)
+  statusMessage  String?       @map("status_message") @db.VarChar(2000)
+  createdId      Int           @map("created_id")
+  updatedId      Int?          @map("updated_id")
+  createdAt      DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt      DateTime?     @map("updated_at") @db.Timestamp(0)
+  reviewKind     ReviewKind    @relation(fields: [reviewKindId], references: [reviewKindId], onUpdate: Restrict, map: "FK_review_kind_TO_release_review_detail")
+  releaseReview  ReleaseReview @relation(fields: [reviewId], references: [reviewId], onUpdate: Restrict, map: "release_review_detail_FK")
+
+  @@id([reviewId, reviewKindId])
+  @@index([reviewKindId], map: "FK_review_kind_TO_release_review_detail")
+  @@map("release_review_detail")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ReviewKind {
+  reviewKindId        String                @id @map("review_kind_id") @db.VarChar(20)
+  name                String                @db.VarChar(50)
+  reviewKindDesc      String?               @map("review_kind_desc") @db.Text
+  reviewKindStep      Int                   @map("review_kind_step") @db.TinyInt
+  requireYn           String                @default("N") @map("require_yn") @db.Char(1)
+  createdId           Int                   @default(-1) @map("created_id")
+  updatedId           Int?                  @map("updated_id")
+  createdAt           DateTime              @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt           DateTime?             @map("updated_at") @db.Timestamp(0)
+  releaseReviewDetail ReleaseReviewDetail[]
+
+  @@map("review_kind")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model SmsCertification {
+  messageId         String    @id @map("message_id") @db.VarChar(50)
+  consoleMemberName String?   @map("console_member_name") @db.VarChar(100)
+  nationCodeNumber  String    @map("nation_code_number") @db.VarChar(4)
+  phone             String?   @db.VarChar(20)
+  code              String?   @db.VarChar(6)
+  startTime         BigInt?   @map("start_time")
+  endTime           BigInt?   @map("end_time")
+  expireYn          String?   @map("expire_yn") @db.Char(1)
+  createdId         Int       @map("created_id")
+  updatedId         Int?      @map("updated_id")
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime? @map("updated_at") @db.Timestamp(0)
+
+  @@map("sms_certification")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TermsGroup {
+  id                                Int       @id
+  serviceCode                       String?   @map("service_code") @db.VarChar(10)
+  name                              String    @db.VarChar(200)
+  description                       String?   @db.VarChar(2000)
+  sort                              Int?      @default(0)
+  refPage                           String?   @map("ref_page") @db.VarChar(20)
+  creatorId                         Int?      @map("creator_id")
+  updatorId                         Int?      @map("updator_id")
+  createdDt                         DateTime? @default(now()) @map("created_dt") @db.Timestamp(0)
+  updatedDt                         DateTime? @map("updated_dt") @db.Timestamp(0)
+  memberTermsGroupCreatorIdTomember Member?   @relation("terms_group_creator_idTomember", fields: [creatorId], references: [memberId], onDelete: Restrict, map: "terms_group_FK")
+  memberTermsGroupUpdatorIdTomember Member?   @relation("terms_group_updator_idTomember", fields: [updatorId], references: [memberId], onDelete: Restrict, map: "terms_group_FK_1")
+
+  @@index([creatorId], map: "terms_group_FK")
+  @@index([updatorId], map: "terms_group_FK_1")
+  @@map("terms_group")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TermsMst {
+  id                              Int       @id @default(autoincrement())
+  termsGroupId                    Int?      @map("terms_group_id")
+  contents                        String?   @db.Text
+  delYn                           String?   @map("del_yn") @db.Char(1)
+  name                            String?   @db.VarChar(50)
+  ver                             String?   @db.VarChar(10)
+  serviceCode                     String?   @map("service_code") @db.VarChar(10)
+  requireYn                       String?   @map("require_yn") @db.Char(1)
+  viewYn                          String?   @map("view_yn") @db.Char(1)
+  updatedDt                       DateTime? @map("updated_dt") @db.DateTime(6)
+  updatorId                       Int?      @map("updator_id")
+  createdAt                       DateTime? @map("created_at") @db.DateTime(6)
+  creatorId                       Int?      @map("creator_id")
+  memberTermsMstCreatorIdTomember Member?   @relation("terms_mst_creator_idTomember", fields: [creatorId], references: [memberId], onDelete: Restrict, map: "terms_mst_FK")
+  memberTermsMstUpdatorIdTomember Member?   @relation("terms_mst_updator_idTomember", fields: [updatorId], references: [memberId], onDelete: Restrict, map: "terms_mst_FK_1")
+
+  @@index([creatorId], map: "terms_mst_FK")
+  @@index([updatorId], map: "terms_mst_FK_1")
+  @@map("terms_mst")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Wallet {
+  walletId      BigInt          @id @default(autoincrement()) @map("wallet_id")
+  walletKindId  String          @map("wallet_kind_id") @db.VarChar(20)
+  statusCd      String          @map("status_cd") @db.VarChar(20)
+  createdId     Int             @default(-1) @map("created_id")
+  updatedId     Int?            @map("updated_id")
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime?       @map("updated_at") @db.Timestamp(0)
+  appWallet     AppWallet[]
+  approveWallet ApproveWallet?
+  walletKind    WalletKind      @relation(fields: [walletKindId], references: [walletKindId], onUpdate: Restrict, map: "FK_wallet_kind_TO_wallet")
+  xMemberWallet XMemberWallet[]
+
+  @@index([walletKindId], map: "FK_wallet_kind_TO_wallet")
+  @@map("wallet")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model WalletKind {
+  walletKindId String    @id @map("wallet_kind_id") @db.VarChar(20)
+  name         String    @db.VarChar(50)
+  createdId    Int       @default(-1) @map("created_id")
+  updatedId    Int?      @map("updated_id")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(0)
+  wallet       Wallet[]
+
+  @@map("wallet_kind")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Webhook {
+  webhookId     Int          @id @default(autoincrement()) @map("webhook_id")
+  name          String       @db.VarChar(50)
+  webhookKindCd String       @map("webhook_kind_cd") @db.VarChar(20)
+  retryCount    Int          @default(0) @map("retry_count") @db.TinyInt
+  requireYn     String       @default("N") @map("require_yn") @db.Char(1)
+  createdId     Int          @default(-1) @map("created_id")
+  updatedId     Int?         @map("updated_id")
+  createdAt     DateTime     @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime?    @map("updated_at") @db.Timestamp(0)
+  appWebhook    AppWebhook[]
+
+  @@map("webhook")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Workspace {
+  workspaceId         Int                   @id @default(autoincrement()) @map("workspace_id")
+  name                String                @db.VarChar(30)
+  createdId           Int                   @map("created_id")
+  updatedId           Int?                  @map("updated_id")
+  createdAt           DateTime              @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt           DateTime?             @map("updated_at") @db.Timestamp(0)
+  appWorkspace        AppWorkspace[]
+  workspaceInvitation WorkspaceInvitation[]
+  workspaceMember     WorkspaceMember[]
+
+  @@map("workspace")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model WorkspaceInvitation {
+  invitationId                                                    Int            @id @default(autoincrement()) @map("invitation_id")
+  workspaceId                                                     Int            @map("workspace_id")
+  senderMemberId                                                  BigInt         @map("sender_member_id")
+  receiverMemberId                                                BigInt?        @map("receiver_member_id")
+  statusCd                                                        String         @default("P") @map("status_cd") @db.Char(1)
+  email                                                           String?        @db.VarChar(200)
+  inviteDt                                                        DateTime?      @map("invite_dt") @db.Timestamp(0)
+  acceptDt                                                        DateTime?      @map("accept_dt") @db.Timestamp(0)
+  createdId                                                       Int            @map("created_id")
+  updatedId                                                       Int?           @map("updated_id")
+  createdAt                                                       DateTime       @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt                                                       DateTime?      @map("updated_at") @db.Timestamp(0)
+  consoleMemberWorkspaceInvitationSenderMemberIdToconsoleMember   ConsoleMember  @relation("workspace_invitation_sender_member_idToconsole_member", fields: [senderMemberId], references: [memberId], onUpdate: Restrict, map: "FK_console_member_TO_workspace_invitation")
+  consoleMemberWorkspaceInvitationReceiverMemberIdToconsoleMember ConsoleMember? @relation("workspace_invitation_receiver_member_idToconsole_member", fields: [receiverMemberId], references: [memberId], onDelete: Restrict, onUpdate: Restrict, map: "FK_console_member_TO_workspace_invitation2")
+  workspace                                                       Workspace      @relation(fields: [workspaceId], references: [workspaceId], onUpdate: Restrict, map: "FK_workspace_TO_workspace_invitation")
+
+  @@index([senderMemberId], map: "FK_console_member_TO_workspace_invitation")
+  @@index([receiverMemberId], map: "FK_console_member_TO_workspace_invitation2")
+  @@index([workspaceId], map: "FK_workspace_TO_workspace_invitation")
+  @@map("workspace_invitation")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model WorkspaceMember {
+  workspaceMemberId BigInt        @id @default(autoincrement()) @map("workspace_member_id")
+  memberId          BigInt        @map("member_id")
+  workspaceId       Int           @map("workspace_id")
+  authCd            String        @default("NORMAL") @map("auth_cd") @db.VarChar(10)
+  alarmYn           String        @default("N") @map("alarm_yn") @db.Char(1)
+  createdId         Int           @map("created_id")
+  updatedId         Int?          @map("updated_id")
+  createdAt         DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime?     @map("updated_at") @db.Timestamp(0)
+  consoleMember     ConsoleMember @relation(fields: [memberId], references: [memberId], onUpdate: Restrict, map: "FK_console_member_TO_workspace_member")
+  workspace         Workspace     @relation(fields: [workspaceId], references: [workspaceId], onUpdate: Restrict, map: "FK_workspace_TO_workspace_member")
+
+  @@index([memberId], map: "FK_console_member_TO_workspace_member")
+  @@index([workspaceId], map: "FK_workspace_TO_workspace_member")
+  @@map("workspace_member")
+}
+
+model XMember {
+  memberId         BigInt          @id @default(autoincrement()) @map("member_id")
+  platformMemberId String?         @map("platform_member_id") @db.Char(36)
+  createdId        Int             @map("created_id")
+  updatedId        Int?            @map("updated_id")
+  createdAt        DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt        DateTime?       @map("updated_at") @db.Timestamp(0)
+  appLike          AppLike[]
+  nftLike          NftLike[]
+  xMemberWallet    XMemberWallet[]
+
+  @@map("x_member")
+}
+
+model XMemberWallet {
+  memberId  BigInt    @map("member_id")
+  walletId  BigInt    @map("wallet_id")
+  name      String?   @db.VarChar(50)
+  defaultYn String    @map("default_yn") @db.Char(1)
+  createdId Int       @map("created_id")
+  updatedId Int?      @map("updated_id")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime? @map("updated_at") @db.Timestamp(0)
+  wallet    Wallet    @relation(fields: [walletId], references: [walletId], onUpdate: Restrict, map: "FK_wallet_TO_x_member_wallet")
+  xMember   XMember   @relation(fields: [memberId], references: [memberId], onUpdate: Restrict, map: "FK_x_member_TO_x_member_wallet")
+
+  @@id([memberId, walletId])
+  @@index([walletId], map: "FK_wallet_TO_x_member_wallet")
+  @@map("x_member_wallet")
+}
+
+model AppNftNew {
+  appId     Int       @map("app_id")
+  nftId     BigInt    @map("nft_id")
+  releaseYn String    @map("release_yn") @db.Char(1)
+  createdId Int       @map("created_id")
+  updatedId Int?      @map("updated_id")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime? @map("updated_at") @db.Timestamp(0)
+  app       App       @relation(fields: [appId], references: [appId], onUpdate: Restrict, map: "FK_app_TO_app_nft_new")
+  nft       Nft       @relation(fields: [nftId], references: [nftId], onUpdate: Restrict, map: "FK_nft_TO_app_nft_new")
+
+  @@id([appId, nftId])
+  @@index([nftId], map: "FK_nft_TO_app_nft_new")
+  @@map("app_nft_new")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model AppNftProduct {
+  productId   BigInt    @id @default(autoincrement()) @map("product_id")
+  contractId  BigInt    @map("contract_id")
+  nftId       BigInt    @map("nft_id")
+  listingId   BigInt?   @map("listing_id")
+  tokenId     BigInt?   @map("token_id")
+  version     String    @default("1.0.0") @db.VarChar(10)
+  price       Decimal   @db.Decimal(36, 18)
+  priceSymbol String    @map("price_symbol") @db.VarChar(20)
+  quantity    Int
+  createdId   Int       @map("created_id")
+  updatedId   Int?      @map("updated_id")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime? @map("updated_at") @db.Timestamp(0)
+  contract    Contract  @relation(fields: [contractId], references: [contractId], onUpdate: Restrict, map: "FK_contract_TO_app_nft_product")
+  nft         Nft       @relation(fields: [nftId], references: [nftId], onUpdate: Restrict, map: "FK_nft_TO_app_nft_product")
+
+  @@index([contractId], map: "FK_contract_TO_app_nft_product")
+  @@index([nftId], map: "FK_nft_TO_app_nft_product")
+  @@map("app_nft_product")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Nft {
+  nftId             BigInt            @id @default(autoincrement()) @map("nft_id")
+  tokenId           BigInt?           @map("token_id")
+  chainId           String            @map("chain_id") @db.VarChar(30)
+  contractId        BigInt            @map("contract_id")
+  createdId         Int               @map("created_id")
+  updatedId         Int?              @map("updated_id")
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime?         @map("updated_at") @db.Timestamp(0)
+  appNftNew         AppNftNew[]
+  appNftProduct     AppNftProduct[]
+  blockchainNetwork BlockchainNetwork @relation(fields: [chainId], references: [chainId], onUpdate: Restrict, map: "FK_blockchain_network_TO_nft")
+  contract          Contract          @relation(fields: [contractId], references: [contractId], onUpdate: Restrict, map: "FK_contract_TO_nft")
+  nftMetadata       NftMetadata?
+  nftProperty       NftProperty[]
+
+  @@index([chainId], map: "FK_blockchain_network_TO_nft")
+  @@index([contractId], map: "FK_contract_TO_nft")
+  @@map("nft")
+}
+
+model NftMetadata {
+  nftId        BigInt    @id @map("nft_id")
+  name         String?   @db.VarChar(50)
+  ipfsUrl      String?   @map("ipfs_url") @db.VarChar(500)
+  imageUrl     String?   @map("image_url") @db.VarChar(500)
+  thumbnailUrl String?   @map("thumbnail_url") @db.VarChar(500)
+  quantity     Int
+  description  String?   @db.VarChar(255)
+  createdId    Int       @map("created_id")
+  updatedId    Int?      @map("updated_id")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(0)
+  nft          Nft       @relation(fields: [nftId], references: [nftId], onUpdate: Restrict, map: "FK_nft_TO_nft_metadata")
+
+  @@map("nft_metadata")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model NftProperty {
+  nftPropertyId BigInt    @id @map("nft_property_id")
+  nftId         BigInt?   @map("nft_id")
+  typeCd        String    @map("type_cd") @db.VarChar(20)
+  displayTypeCd String    @map("display_type_cd") @db.VarChar(20)
+  key           String    @db.VarChar(20)
+  value         String    @db.VarChar(200)
+  createdId     Int       @map("created_id")
+  updatedId     Int?      @map("updated_id")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @map("updated_at") @db.Timestamp(0)
+  nft           Nft?      @relation(fields: [nftId], references: [nftId], onDelete: Restrict, onUpdate: Restrict, map: "FK_nft_TO_nft_property")
+
+  @@index([nftId], map: "FK_nft_TO_nft_property")
+  @@map("nft_property")
+}
