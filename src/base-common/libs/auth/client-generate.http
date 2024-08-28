@@ -1,5 +1,5 @@
 ### Basic authorization.
-POST https://accounts.hqloud.blocksmith.xyz/realms/master/protocol/openid-connect/token
+POST https://{host}/realms/master/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=client_credentials&client_id=platpome-client-admin&client_secret=9spoKyl53wfThnbbOmP8zts21AgNIRQO
@@ -12,7 +12,7 @@ client.global.set("appId", (+client.global.get("appId")) +1);
 
 
 ### Basic authorization.
-POST https://accounts.hqloud.blocksmith.xyz/admin/realms/platpome/clients
+POST https://{host}/admin/realms/platpome/clients
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 Accept: application/json, text/plain, */*
@@ -42,7 +42,7 @@ Accept: application/json, text/plain, */*
 
 
 ### Basic authorization with variables.
-GET https://accounts.hqloud.blocksmith.xyz/admin/realms/platpome/clients?clientId={{appId}}
+GET https://{host}/admin/realms/platpome/clients?clientId={{appId}}
 Authorization: Bearer {{access_token}}
 
 > {%

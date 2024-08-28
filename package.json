@@ -2,7 +2,7 @@
   "name": "platpome-console-backend",
   "version": "0.0.1",
   "private": true,
-  "repository": "https://bitbucket.org/blocksmithdevelopment/base-template/src/bdf011677f43272cca34d98b0327e90fef688f4d/?at=release%2Fbare",
+  "repository": "",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8.6.3"

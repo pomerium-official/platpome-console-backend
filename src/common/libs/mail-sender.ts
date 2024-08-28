@@ -12,7 +12,7 @@ export class MailSender {
       secure: false,
       requireTLS: true,
       auth: {
-        user: 'kimsw@blocksmith.xyz',
+        user: 'kimsw@host.xyz',
         pass: 'ikeklezahttajpqo',
       },
     });

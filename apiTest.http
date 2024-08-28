@@ -1,9 +1,7 @@
 ### GET authorize code
-#GET http://dev1.blocksmith.xyz:5000/server/auth/authorize?client_id=testClientId&redirect_uri=http://dev1.blocksmith.xyz:5000/oauth2/callback&response_type=code&scope=read
-
 
 ### 회원가입
-POST http://dev1.blocksmith.xyz:5000/users
+POST http://host/users
 Content-Type: application/json
 
 {

@@ -7,19 +7,17 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 110981211827.dkr.ecr.ap-northeast-2.amazonaws.com
+      - aws ecr get-login-password --region ap-northeast-2 | docker login 
   build:
     commands:
       - echo Building the Docker image...
       - |
-        sed -i "s|\"Name\": \".*\"|\"Name\": \"110981211827.dkr.ecr.ap-northeast-2.amazonaws.com/pomeriumx/console-backend:${CODEBUILD_RESOLVED_SOURCE_VERSION}\"|" Dockerrun.aws.json
-      - docker build -t pomeriumx/console-backend . --build-arg BUILD_ENV=production
-      - docker tag pomeriumx/console-backend:latest 110981211827.dkr.ecr.ap-northeast-2.amazonaws.com/pomeriumx/console-backend:${CODEBUILD_RESOLVED_SOURCE_VERSION}
+      - docker build -t {ecr} . --build-arg BUILD_ENV=
 
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push 110981211827.dkr.ecr.ap-northeast-2.amazonaws.com/pomeriumx/console-backend:${CODEBUILD_RESOLVED_SOURCE_VERSION}
+      - docker push {ecr}:${CODEBUILD_RESOLVED_SOURCE_VERSION}
 artifacts:
   files:
     - Dockerrun.aws.json

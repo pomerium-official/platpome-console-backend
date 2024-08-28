@@ -805,7 +805,7 @@ export class HttpClient<SecurityDataType = unknown> {
             ...axiosConfig,
             baseURL:
                 axiosConfig.baseURL ||
-                'http://132-review-developmen-id0r3d.hqloud.blocksmith.xyz:80',
+                'http://132-review-developmen-id0r3d.hqloud.xyz:80',
         });
         this.secure = secure;
         this.format = format;
@@ -890,7 +890,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @version 1.0
  * @license Apache 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  * @termsOfService urn:tos
- * @baseUrl http://132-review-developmen-id0r3d.hqloud.blocksmith.xyz:80
+ * @baseUrl http://132-review-developmen-id0r3d.hqloud.xx.xyz:80
  * @contact
  *
  * Api Documentation

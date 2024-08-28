@@ -1,9 +1,7 @@
 ###
 # password grant login
-POST https://accounts.hqloud.blocksmith.xyz/realms/blocksmith/protocol/openid-connect/token
+POST https://host/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
-
-grant_type=password&client_id=guhyeon&username=guhyeon@blocksmith.xyz&password=Qlalfqjsgh1!
 
 ###
 

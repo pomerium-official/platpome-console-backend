@@ -138,7 +138,6 @@ main().then();
 //       `[batch][구독결제취소] 취소 종료 ${JSON.stringify(cancelJobResults)}`
 //     );
 //
-//     // 구독취소한 회원 충전 취소 TODO 추후 회원 탈퇴시에도 탈퇴한 회원에 대해 아래 코드 이용 https://blocksmith.atlassian.net/browse/EH-909
 //     console.log(`[batch][구독결제취소] 충전중인 장비 충전 종료 처리 시작`);
 //
 //     const canceledMemberIds: number[] = [];
